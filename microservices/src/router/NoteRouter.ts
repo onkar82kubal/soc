@@ -1,4 +1,4 @@
-import BaseRoutes from "./base/BaseRouter";
+import BaseRoutes from "./BaseRouter";
 import NoteController from "../controller/NoteController";
 import validate from "../helper/validate";
 import { createNoteSchema, updateNoteSchema } from "../schema/NoteSchema";

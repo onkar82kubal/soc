@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
+import AuthenticationRouter from "./router/AuthenticationRouter";
 import NoteRouter from "./router/NoteRouter";
 
 class App {
@@ -19,7 +20,8 @@ class App {
 
   protected databaseSync(): void {
     const db = new Database();
-    db.sequelize?.sync();
+    db.post_sequelize?.sync();
+    db.my_sequelize?.sync();
   }
 
   protected routes(): void {
@@ -27,6 +29,7 @@ class App {
       res.send("welcome home");
     });
     this.app.use("/api/v1/note", NoteRouter);
+    this.app.use("/api/v1/auth", AuthenticationRouter);
   }
 }
 

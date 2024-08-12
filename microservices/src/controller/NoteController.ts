@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Note } from "../model/Note";
+import { Note } from "../models/Note";
 import { NoteRepo } from "../repository/NoteRepo";
 
 class NoteController {

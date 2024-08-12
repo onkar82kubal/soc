@@ -1,4 +1,4 @@
-import { Note } from "../model/Note";
+import { Note } from "../models/Note";
 
 interface INoteRepo {
   save(note: Note): Promise<void>;
