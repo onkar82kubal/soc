@@ -2,6 +2,8 @@ import { Sequelize } from "sequelize-typescript";
 import * as dotenv from "dotenv";
 import { Note } from "../models/Note";
 import { Users } from "../models/Users";
+import { Societies } from "../models/Societies";
+
 dotenv.config();
 
 
@@ -36,7 +38,7 @@ class Database {
       host: this.POSTGRES_HOST,
       port: this.POSTGRES_PORT,
       dialect: "postgres",
-      models:[Note,Users]
+      models:[Users,Societies]
     });
 
     await this.post_sequelize
@@ -58,7 +60,7 @@ class Database {
       username: this.MYSQL_USER,
       password: this.MYSQL_PASSWORD,
       database: this.MYSQL_DB,
-      models: [Note,Users], 
+      models: [Note], 
       logging: false, 
     });
      
