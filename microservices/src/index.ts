@@ -3,6 +3,7 @@ import Database from "./config/database";
 import AuthenticationRouter from "./router/AuthenticationRouter";
 import NoteRouter from "./router/NoteRouter";
 import SocietyRouter from "./router/SocietyRouter";
+import NotificationRouter from "./router/NotificationRouter";
 
 class App {
   public app: Application;
@@ -32,6 +33,7 @@ class App {
     this.app.use("/api/v1/note", NoteRouter);
     this.app.use("/api/v1/auth", AuthenticationRouter);
     this.app.use("/api/v1/society", SocietyRouter);
+    this.app.use("/api/v1/notification", NotificationRouter);
   }
 }
 
