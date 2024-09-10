@@ -4,6 +4,7 @@ import AuthenticationRouter from "./router/AuthenticationRouter";
 import NoteRouter from "./router/NoteRouter";
 import SocietyRouter from "./router/SocietyRouter";
 import NotificationRouter from "./router/NotificationRouter";
+import EmailRouter from "./router/EmailRouter";
 
 class App {
   public app: Application;
@@ -34,6 +35,7 @@ class App {
     this.app.use("/api/v1/auth", AuthenticationRouter);
     this.app.use("/api/v1/society", SocietyRouter);
     this.app.use("/api/v1/notification", NotificationRouter);
+    this.app.use("/api/v1/email", EmailRouter);
   }
 }
 

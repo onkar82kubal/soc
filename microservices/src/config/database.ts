@@ -4,6 +4,7 @@ import { Note } from "../models/Note";
 import { Users } from "../models/Users";
 import { Societies } from "../models/Societies";
 import { Notifications } from "../models/Notifications";
+import { Emails } from "../models/Emails";
 
 dotenv.config();
 
@@ -39,7 +40,7 @@ class Database {
       host: this.POSTGRES_HOST,
       port: this.POSTGRES_PORT,
       dialect: "postgres",
-      models:[Users,Societies,Notifications]
+      models:[Users,Societies,Notifications,Emails]
     });
 
     await this.post_sequelize

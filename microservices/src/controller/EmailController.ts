@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
-import { NotificationService } from "../service/Notification";
+import { EmailService } from "../service/Email";
 
 
-class NotificationController {
+class EmailController {
 
-    async createNotification(req: Request, res: Response) {
+    async createEmail(req: Request, res: Response) {
         try {
-            const { society_id, from_email, to_email, content,is_read,isactive } = req.body;
-            await new NotificationService().createNotification(
+            const { society_id,email_id, from_email, to_email, content,is_read,isactive } = req.body;
+            await new EmailService().createEmail(
                 society_id,
+                email_id,
                 from_email,
                 to_email,
                 content,
@@ -28,13 +29,13 @@ class NotificationController {
           }
       }
     
-      async updateNotification(req: Request, res: Response) {
+      async updateEmail(req: Request, res: Response) {
         try {
-            const {notification_id, is_read,
+            const {email_id, is_read,
                 is_active  } = req.body;
       
-            await new NotificationService().updateNotification(
-                notification_id, is_read,
+            await new EmailService().updateEmail(
+                email_id, is_read,
                 is_active 
             );
       
@@ -49,11 +50,29 @@ class NotificationController {
             });
           }
       }
+
+      async findAll(req: Request, res: Response) {
+        try {
+          const new_note = await new EmailService().retrieveAll();
+    
+          res.status(200).json({
+            status: "Ok!",
+            message: "Successfully fetched all",
+            data: new_note,
+          });
+        } catch (err) {
+          res.status(500).json({
+            status: "Internal Server Error!",
+            message: "Internal Server Error!",
+          });
+        }
+      }
+
       async findByEmail(req: Request, res: Response) {
         try {
           let email = req.params["email"];
           let society_id ='66d8cf5027e4be6354b9c1c2'
-          const new_note = await new NotificationService().findByEmail(email,society_id);
+          const new_note = await new EmailService().findByEmail(email,society_id);
           res.status(200).json({
             status: "Ok!",
             message: "Successfully fetched",
@@ -69,4 +88,4 @@ class NotificationController {
 
 }
 
-export default new NotificationController()
+export default new EmailController()
