@@ -3,7 +3,7 @@ import { Notifications } from "../models/Notifications";
 interface INotificationRepo {
     save(notifications:Notifications): Promise<void>;
     update(notifications:Notifications): Promise<void>;
-    findByEmail(email: string): Promise<Notifications>;
+    findByEmail(email: string,society_id:string): Promise<Notifications[]>;
   }
 
 
@@ -44,16 +44,13 @@ interface INotificationRepo {
             throw new Error("Failed to update!");
           }
     }
-    async findByEmail(email: string): Promise<Notifications> {
+    async findByEmail(email: string,society_id:string): Promise<Notifications[]> {
       try {
-          const new_users = await Notifications.findOne({
-            where: { to_email: email },
-            attributes:{ exclude:['id']}
+          return await Notifications.findAll({
+            where: { to_email: email,society_id:society_id, is_read:"N",isactive:"Y" },
+            attributes:{ exclude:['id','society_id','is_read','isactive','createdAt','updatedAt']},
+            order: [['createdAt', 'DESC']]
           });
-          if (!new_users) {
-            throw new Error("Societies not found!");
-          }
-          return new_users;
         } catch (error) {
           throw new Error("Failed to feacth data by email!");
         }

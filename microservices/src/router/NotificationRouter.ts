@@ -11,11 +11,6 @@ class NotificationRoutes extends BaseRoutes {
       validate(updateNotificationSchema),
       NotificationController.updateNotification
     );
-    this.router.patch(
-      "/:id",
-      validate(updateNotificationSchema),
-      NotificationController.updateNotification
-    );
     this.router.get("/email/:email", NotificationController.findByEmail);
   }
 }

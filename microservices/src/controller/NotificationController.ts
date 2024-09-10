@@ -6,6 +6,9 @@ class NotificationController {
 
     async createNotification(req: Request, res: Response) {
         try {
+              console.log('=========>');
+              console.log(req.body);
+              console.log('=========>');
             const { society_id, from_email, to_email, content,is_read,isactive } = req.body;
             await new NotificationService().createNotification(
                 society_id,
@@ -52,11 +55,11 @@ class NotificationController {
       async findByEmail(req: Request, res: Response) {
         try {
           let email = req.params["email"];
-          const new_note = await new NotificationService().findByEmail(email);
-    
+          let society_id ='66d8cf5027e4be6354b9c1c2'
+          const new_note = await new NotificationService().findByEmail(email,society_id);
           res.status(200).json({
             status: "Ok!",
-            message: "Successfully fetched note by id!",
+            message: "Successfully fetched",
             data: new_note,
           });
         } catch (err) {

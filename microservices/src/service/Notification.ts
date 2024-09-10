@@ -57,9 +57,9 @@ export class NotificationService implements INotificationService {
         throw new Error("Error!");
       }
     }
-    async findByEmail(email:string) {
+    async findByEmail(email:string,society_id:string) {
       try {
-        return await new NotificationRepo().findByEmail(email);
+        return await new NotificationRepo().findByEmail(email,society_id);
         } catch (error) {
           throw new Error("Error!");
         }
