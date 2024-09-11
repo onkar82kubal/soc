@@ -31,7 +31,8 @@ export class AuthenticationService implements IAuthenticationService {
         users.id,
         users.email,
         users.name,
-        users.username
+        users.username,
+        // society_id,
       );
     }
     return "";
