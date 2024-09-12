@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import speakeasy from "speakeasy";
+import * as dotenv from "dotenv";
 
 interface Payload {
   userId: number;
@@ -8,8 +10,11 @@ interface Payload {
   username: string;
   // society_id: string;
 }
+dotenv.config();
+const secret = speakeasy.generateSecret({length: 20});
 
 class Authentication {
+  
   public static passwordHash(password: string): Promise<string> {
     return bcrypt.hash(password, 10);
   }
@@ -48,6 +53,32 @@ class Authentication {
     } catch (err) {
       return null;
     }
+  }
+
+  public static generateOTPCode(){
+    try {
+      return speakeasy.totp({
+        secret: secret.base32,
+        encoding: 'base32',
+        step:60,
+      });
+    } catch (err) {
+      return null;
+    }
+  }
+
+  public static verifyOTPCode(otp:string){
+    try {
+    return speakeasy.totp.verify({
+      secret: secret.base32,
+      encoding: 'base32',
+      window: 2,
+      step: 60,
+      token: otp,
+    });
+  } catch (err) {
+    return null;
+  }
   }
 }
 

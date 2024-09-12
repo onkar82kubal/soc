@@ -58,4 +58,16 @@ export class AuthenticationService implements IAuthenticationService {
       throw new Error("Error login!");
     }
   }
+
+  async generateOTP(){
+    return Authentication.generateOTPCode();
+  }
+
+  async verifyOTP(otp:string) {
+    try {
+      return Authentication.verifyOTPCode(otp);
+    } catch (error) {
+      throw new Error("Error login!");
+    }
+  }
 }

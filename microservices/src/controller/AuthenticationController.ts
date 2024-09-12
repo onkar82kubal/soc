@@ -49,6 +49,37 @@ class AuthenticationController {
       });
     }
   }
+  async generateOTP(req: Request, res: Response){
+    try {
+      const otp = await new AuthenticationService().generateOTP();
+    return res.status(200).json({
+      status: "Ok!",
+      message: "Successfully registerd users!",
+      otp: otp
+    });
+    } catch (error) {
+      return res.status(500).json({
+        status: "Internal server Error!",
+        message: "Internal server Error!",
+      });
+    }
+  }
+
+  async verifyOTP(req: Request, res: Response){
+    const { otp } = req.body;
+    let otpStatus = await new AuthenticationService().verifyOTP(otp)
+    if(otpStatus){
+      return res.status(200).json({
+        status: "Ok!",
+        message: "OTP verified",
+      });
+    } else {
+      return res.status(500).json({
+        status: "Internal server Error!",
+        message: "Internal server Error!",
+      });
+    }
+  }
 }
 
 
