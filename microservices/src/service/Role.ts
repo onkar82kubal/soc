@@ -1,0 +1,70 @@
+import { Roles } from "../models/Roles";
+import { RoleRepo } from "../repository/RoleRepo";
+import  ObjectId  from "../utils/ObjectId";
+
+
+interface IRoleService {
+    createRole( 
+        role_id: string, 
+        title: string, 
+        description: string,
+        device_type: string,
+        isactive: string): Promise<void>;
+    updateRole(
+        role_id: string, 
+        title: string, 
+        description: string,
+        device_type: string,
+        isactive: string): Promise<void>;
+  }
+
+
+export class RoleService implements IRoleService {
+    async createRole( 
+        role_id: string, 
+        title: string, 
+        description: string,
+        device_type: string,
+        isactive: string): Promise<void> {
+              
+      try {
+        const new_notifications = new Roles();
+        new_notifications.role_id = ObjectId.generateObjectId();
+        new_notifications.title = title;
+        new_notifications.description = description;
+        new_notifications.device_type = device_type;
+        new_notifications.isactive = 'Y';
+        
+        await new RoleRepo().save(new_notifications);
+      } catch (error) {
+        throw new Error("Error!");
+      }
+    }
+
+    async updateRole(
+        role_id: string, 
+        title: string, 
+        description: string,
+        device_type: string,
+        isactive: string): Promise<void> {
+      try {
+        const new_notifications = new Roles();
+        new_notifications.role_id = role_id;
+        new_notifications.title = title;
+        new_notifications.description = description;
+        new_notifications.device_type = device_type;
+        new_notifications.isactive = isactive;
+        await new RoleRepo().update(new_notifications);
+      } catch (error) {
+        throw new Error("Error!");
+      }
+    }
+    async getRole() {
+      try {
+        return await new RoleRepo().getRole();
+        } catch (error) {
+          throw new Error("Error!");
+        }
+  }
+    
+}

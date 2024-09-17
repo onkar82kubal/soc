@@ -7,6 +7,7 @@ import NotificationRouter from "./router/NotificationRouter";
 import EmailRouter from "./router/EmailRouter";
 import VendorRouter from "./router/VendorRouter";
 import ParkingRouter from "./router/ParkingRouter";
+import RoleRouter from "./router/RoleRouter";
 
 class App {
   public app: Application;
@@ -40,6 +41,7 @@ class App {
     this.app.use("/api/v1/email", EmailRouter);
     this.app.use("/api/v1/vendor", VendorRouter);
     this.app.use("/api/v1/parking", ParkingRouter);
+    this.app.use("/api/v1/role", RoleRouter);
   }
 }
 
