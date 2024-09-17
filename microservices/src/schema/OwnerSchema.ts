@@ -3,9 +3,9 @@ import { z } from "zod";
 
 export const createSchema = z.object({
     body: z.object({
-        owner_id: z
-        .string()
-        .min(1, { message: "Name must be greater than 1 characters!" }),
+        // owner_id: z
+        // .string()
+        // .min(1, { message: "Name must be greater than 1 characters!" }),
         role_id: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),
@@ -27,15 +27,15 @@ export const createSchema = z.object({
         landline: z
         .string()
         .min(1, { message: "Is active must be greater than 1 characters!" }),
-        password: z
-        .string()
-        .min(1, { message: "Is active must be greater than 1 characters!" }),
+        // password: z
+        // .string()
+        // .min(1, { message: "Is active must be greater than 1 characters!" }),
         on_rent: z
         .string()
         .min(1, { message: "Is active must be greater than 1 characters!" }),
-        isactive: z
-        .string()
-        .max(1, { message: "Is active must be greater than 1 characters!" }),
+        // isactive: z
+        // .string()
+        // .max(1, { message: "Is active must be greater than 1 characters!" }),
     }),
   });
 

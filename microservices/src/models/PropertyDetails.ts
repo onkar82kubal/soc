@@ -5,7 +5,7 @@ import { Model, Table, Column, DataType } from "sequelize-typescript";
 })
 
 export class PropertyDetails extends Model {
-  public static VAR_TABLE_NAME = "PropertyDetails" as string;
+  public static VAR_TABLE_NAME = "propertydetails" as string;
   public static VAR_ID = "id" as string;
   public static VAR_Property_Id = "property_id" as string;
   public static VAR_Society_Id = "society_id" as string;

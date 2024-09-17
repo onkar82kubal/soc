@@ -27,14 +27,12 @@ interface IPropertyDetailService {
 
 export class PropertyDetailService implements IPropertyDetailService {
     async createPropertyDetail( 
-            property_id: string,
             society_id: string,
             property_number: string,
             type: string,
             configuration: string,
             size: string,
-            area: string,
-            isactive: string): Promise<void> {
+            area: string,): Promise<void> {
               
       try {
         const new_notifications = new PropertyDetails();

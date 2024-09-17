@@ -7,23 +7,19 @@ class PropertyDetailController {
     async createPropertyDetail(req: Request, res: Response) {  
         try {
             const { 
-              property_id,
               society_id,
               property_number,
               type,
               configuration,
               size,
-              area,
-              isactive } = req.body;
+              area } = req.body;
             await new PropertyDetailService().createPropertyDetail(
-                property_id,
                 society_id,
                 property_number,
                 type,
                 configuration,
                 size,
-                area,
-                isactive 
+                area 
             );
       
             return res.status(200).json({

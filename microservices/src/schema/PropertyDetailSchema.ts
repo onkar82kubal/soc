@@ -3,21 +3,24 @@ import { z } from "zod";
 
 export const createPropertyDetailSchema = z.object({
     body: z.object({
-        role_id: z
+        society_id: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),
-        title: z
+        property_number: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),
-        description: z
+        type: z
         .string()
         .min(1, { message: "Is active must be greater than 1 characters!" }),
-        device_type: z
+        configuration: z
         .string()
         .min(1, { message: "Is active must be greater than 1 characters!" }),
-        isactive: z
+        size: z
         .string()
-        .max(1, { message: "Is active must be greater than 1 characters!" }),
+        .min(1, { message: "Is active must be greater than 1 characters!" }),
+        area: z
+        .string()
+        .min(1, { message: "Is active must be greater than 1 characters!" }),
     }),
   });
 
@@ -25,16 +28,25 @@ export const createPropertyDetailSchema = z.object({
     params: z.object({ id: z.string() }),
     body: z
       .object({
-        role_id: z
+        property_id: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),
-        title: z
+        society_id: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),
-        description: z
+        property_number: z
+        .string()
+        .min(1, { message: "Name must be greater than 1 characters!" }),
+        type: z
         .string()
         .min(1, { message: "Is active must be greater than 1 characters!" }),
-        device_type: z
+        configuration: z
+        .string()
+        .min(1, { message: "Is active must be greater than 1 characters!" }),
+        size: z
+        .string()
+        .min(1, { message: "Is active must be greater than 1 characters!" }),
+        area: z
         .string()
         .min(1, { message: "Is active must be greater than 1 characters!" }),
         isactive: z
