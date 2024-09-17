@@ -5,7 +5,7 @@ export const createParkingSchema = z.object({
     body: z.object({
         parking_id: z
         .string()
-        .uuid({ message: "Invalid UUID" }),
+        .min(1, { message: "Name must be greater than 1 characters!" }),
         society_id: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),
@@ -34,7 +34,7 @@ export const createParkingSchema = z.object({
       .object({
         parking_id: z
         .string()
-        .uuid({ message: "Invalid UUID" }),
+        .min(1, { message: "Name must be greater than 1 characters!" }),
         society_id: z
         .string()
         .min(1, { message: "Name must be greater than 1 characters!" }),

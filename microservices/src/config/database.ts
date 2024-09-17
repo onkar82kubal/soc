@@ -8,6 +8,7 @@ import { Emails } from "../models/Emails";
 import { Vendors } from "../models/Vendors";
 import { Parkings } from "../models/Parkings";
 import { Roles } from "../models/Roles";
+import { PropertyDetails } from "../models/PropertyDetails";
 
 dotenv.config();
 
@@ -43,7 +44,7 @@ class Database {
       host: this.POSTGRES_HOST,
       port: this.POSTGRES_PORT,
       dialect: "postgres",
-      models:[Users,Societies,Notifications,Emails,Vendors,Parkings,Roles]
+      models:[Users,Societies,Notifications,Emails,Vendors,Parkings,Roles,PropertyDetails]
     });
 
     await this.post_sequelize
