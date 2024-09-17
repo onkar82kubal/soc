@@ -79,3 +79,14 @@ export const createSchema = z.object({
       })
       .partial(),
   });
+
+  export const LoginSchema = z.object({
+    body: z.object({
+      email: z
+      .string()
+      .email({message:"Email is required"}),
+      password: z
+      .string()
+      .min(6, { message: "Password must be greater than 6 characters!" }),
+    }),
+  });

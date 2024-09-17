@@ -1,5 +1,6 @@
 import { Owners } from "../models/Owners";
 import { OwnerRepo } from "../repository/OwnerRepo";
+import { RoleRepo } from "../repository/RoleRepo";
 import Authentication from "../utils/Authentication";
 import  ObjectId  from "../utils/ObjectId";
 import * as dotenv from "dotenv";
@@ -121,5 +122,76 @@ export class OwnerService implements IOwnerService {
             throw new Error("Error!");
           }
       }
+
+    async login(email: string, password: string): Promise<string> {
+        const users = await new OwnerRepo().findByEmail(email);
+        if (!users) {
+          throw new Error("Bad Request!");
+        }
+        // check password
+        let compare = await Authentication.passwordCompare(
+          password,
+          users.password
+        );
     
+        // generate token
+        if (compare) {
+          const roles = await new RoleRepo().getRolebyId(users.role_id)
+          if(roles.device_type ==='Web') {
+            return Authentication.generateToken(
+              users.owner_id,
+              users.role_id,
+              users.society_id,
+              users.property_id,
+              users.firstname,
+              users.lastname,
+              users.mobile,
+              users.landline,
+              users.email,
+              users.on_rent,
+            );
+          }
+        }
+        return "";
+      }
+    
+    async generateOTP(){
+      return Authentication.generateOTPCode();
+    }
+  
+    async verifyOTP(otp:string) {
+      try {
+        return Authentication.verifyOTPCode(otp);
+      } catch (error) {
+        throw new Error("Error login!");
+      }
+    }
+
+    async loginmobile(mobile: string): Promise<string> {
+      const users = await new OwnerRepo().findByMobile(mobile);
+      
+      if (!users) {
+        throw new Error("Bad Request!");
+      }
+      
+      // generate token
+      if (mobile === users.mobile) {
+        const roles = await new RoleRepo().getRolebyId(users.role_id)
+          if(roles.device_type ==='Mobile') {
+            return Authentication.generateToken(
+              users.owner_id,
+              users.role_id,
+              users.society_id,
+              users.property_id,
+              users.firstname,
+              users.lastname,
+              users.mobile,
+              users.landline,
+              users.email,
+              users.on_rent,
+            );
+          }
+      }
+      return "";
+    }
 }

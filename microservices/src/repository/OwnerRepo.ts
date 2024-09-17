@@ -72,7 +72,7 @@ interface IOwnerRepo {
     async getById(society_id:string,ownerid:string): Promise<Owners[]>  {
         try {
           return await Owners.findAll({
-            where: { isactive:'Y'},
+            where: { isactive:'Y',society_id:society_id,ownerid:ownerid},
             attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
             order: [['createdAt', 'DESC']]
           });
@@ -81,4 +81,35 @@ interface IOwnerRepo {
         }
     }
 
+    async findByEmail(email:string): Promise<Owners>  {
+      try {
+        const new_note = await Owners.findOne({
+          where: { isactive:'Y',email:email},
+          attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
+          order: [['createdAt', 'DESC']]
+        });
+        if (!new_note) {
+          throw new Error("Note not found!");
+        }
+        return new_note;
+      } catch (error) {
+        throw new Error("Failed to feacth data by email!");
+      }
+    }
+
+    async findByMobile(mobile:string): Promise<Owners>  {
+      try {
+        const new_note = await Owners.findOne({
+          where: { isactive:'Y',mobile:mobile},
+          attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
+          order: [['createdAt', 'DESC']]
+        });
+        if (!new_note) {
+          throw new Error("Note not found!");
+        }
+        return new_note;
+      } catch (error) {
+        throw new Error("Failed to feacth data by mobile!");
+      }
+    }
   }

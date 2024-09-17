@@ -4,11 +4,21 @@ import speakeasy from "speakeasy";
 import * as dotenv from "dotenv";
 
 interface Payload {
-  userId: number;
+  // userId: number;
+  // email: string;
+  // name: string;
+  // username: string;
+  // // society_id: string;
+  owner_id: string;
+  role_id: string;
+  society_id: string;
+  property_id: string;
+  firstname: string;
+  lastname: string;
+  mobile: string;
+  landline: string;
   email: string;
-  name: string;
-  username: string;
-  // society_id: string;
+  on_rent: string;
 }
 dotenv.config();
 const secret = speakeasy.generateSecret({length: 20});
@@ -27,20 +37,30 @@ class Authentication {
   }
 
   public static generateToken(
-    id: number,
+    owner_id: string,
+    role_id: string,
+    society_id: string,
+    property_id: string,
+    firstname: string,
+    lastname: string,
+    mobile: string,
+    landline: string,
     email: string,
-    name: string,
-    username: string,
-    // society_id: string,
+    on_rent: string
   ): string {
     const secretKey: string = process.env.JWT_SECRET_KEY || "my-secret";
     const payload: Payload = {
-      userId: id,
+      owner_id: owner_id,
+      role_id: role_id,
+      society_id: society_id,
+      property_id: property_id,
+      firstname: firstname,
+      lastname: lastname,
+      mobile: mobile,
+      landline: landline,
       email: email,
-      name: name,
-      username: username,
-      // society_id:society_id
-    };
+      on_rent: on_rent
+      };
     const option = { expiresIn: process.env.JWT_EXPIRES_IN };
 
     return jwt.sign(payload, secretKey, option);

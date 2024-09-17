@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
-import AuthenticationRouter from "./router/AuthenticationRouter";
+
 import NoteRouter from "./router/NoteRouter";
 import SocietyRouter from "./router/SocietyRouter";
 import NotificationRouter from "./router/NotificationRouter";
@@ -10,6 +10,7 @@ import ParkingRouter from "./router/ParkingRouter";
 import RoleRouter from "./router/RoleRouter";
 import PropertyDetailsRouter from "./router/PropertyDetailsRouter";
 import OwnerRouter from "./router/OwnerRouter";
+import OuthRouter from "./router/OuthRouter";
 
 class App {
   public app: Application;
@@ -37,7 +38,6 @@ class App {
       res.send("welcome home");
     });
     this.app.use("/api/v1/note", NoteRouter);
-    this.app.use("/api/v1/auth", AuthenticationRouter);
     this.app.use("/api/v1/society", SocietyRouter);
     this.app.use("/api/v1/notification", NotificationRouter);
     this.app.use("/api/v1/email", EmailRouter);
@@ -46,6 +46,7 @@ class App {
     this.app.use("/api/v1/role", RoleRouter);
     this.app.use("/api/v1/propertydetails", PropertyDetailsRouter);
     this.app.use("/api/v1/owner", OwnerRouter);
+    this.app.use("/api/v1/outh", OuthRouter);
   }
 }
 

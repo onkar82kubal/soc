@@ -4,6 +4,7 @@ interface IRoleRepoRepo {
     save(roles:Roles): Promise<void>;
     update(roles:Roles): Promise<void>;
     getRole(): Promise<Roles[]>;
+    getRolebyId(role_id:string): Promise<Roles>
   }
 
 
@@ -55,5 +56,19 @@ interface IRoleRepoRepo {
           throw new Error("Failed to feacth data by email!");
         }
       }
+      async getRolebyId(role_id:string): Promise<Roles> {
+        try {
+          const new_users = await Roles.findOne({
+            where: {  isactive:'Y',role_id: role_id },
+            attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
+          });
+          if (!new_users) {
+            throw new Error("Users not found!");
+          }
+          return new_users;
+        } catch (error) {
+          throw new Error("Failed to feacth data by id!");
+        }
 
+    }
   }

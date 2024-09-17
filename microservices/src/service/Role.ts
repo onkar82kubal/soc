@@ -65,6 +65,14 @@ export class RoleService implements IRoleService {
         } catch (error) {
           throw new Error("Error!");
         }
-  }
+    }
+
+    async getRolebyId(role_id:string) {
+      try {
+        return await new RoleRepo().getRolebyId(role_id);
+        } catch (error) {
+          throw new Error("Error!");
+        }
+    }
     
 }

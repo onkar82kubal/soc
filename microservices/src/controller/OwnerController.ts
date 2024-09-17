@@ -117,7 +117,79 @@ class OwnerController {
             message: "Internal Server Error!",
           });
         }
-      }  
+      }
+      async login(req: Request, res: Response) {
+        try {
+          const { email, password } = req.body;
+          const token = await new OwnerService().login(email, password);
+          if (token === "") {
+            return res.status(400).json({
+              status: "Bad Request!",
+              message: "Wrong email or password!",
+            });
+          }
+          const res_token = { type: "Bearer", token: token };
+          return res.status(200).json({
+            status: "Ok!",
+            message: "Successfully login!",
+            result: res_token,
+          });
+        } catch (error) {
+          return res.status(500).json({
+            status: "Internal server Error!",
+            message: "Internal server Error!",
+          });
+        }
+      }
+      
+      async generateOTP(req: Request, res: Response){
+        try {
+          const { mobile } = req.body;
+          const otp = await new OwnerService().generateOTP();
+        return res.status(200).json({
+          status: "Ok!",
+          message: "Successfully registerd users!",
+          otp: otp
+        });
+        } catch (error) {
+          return res.status(500).json({
+            status: "Internal server Error!",
+            message: "Internal server Error!",
+          });
+        }
+      }
+    
+      async verifyOTP(req: Request, res: Response){
+        try {
+        const { otp,mobile } = req.body;
+        let otpStatus = await new OwnerService().verifyOTP(otp)
+        if(otpStatus){
+          const token = await new OwnerService().loginmobile(mobile);
+          if (token === "") {
+            return res.status(400).json({
+              status: "Bad Request!",
+              message: "Wrong email or password!",
+            });
+          }
+          const res_token = { type: "Bearer", token: token };
+          return res.status(200).json({
+            status: "Ok!",
+            message: "Successfully login!",
+            result: res_token,
+          });
+        } else {
+          return res.status(500).json({
+            status: "Internal server Error!",
+            message: "Internal server Error!",
+          });
+        }
+      } catch (error) {
+        return res.status(500).json({
+          status: "Internal server Error!",
+          message: "Internal server Error!",
+        });
+      }
+      }
 
 }
 
