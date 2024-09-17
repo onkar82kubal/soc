@@ -9,6 +9,7 @@ import VendorRouter from "./router/VendorRouter";
 import ParkingRouter from "./router/ParkingRouter";
 import RoleRouter from "./router/RoleRouter";
 import PropertyDetailsRouter from "./router/PropertyDetailsRouter";
+import OwnerRouter from "./router/OwnerRouter";
 
 class App {
   public app: Application;
@@ -44,6 +45,7 @@ class App {
     this.app.use("/api/v1/parking", ParkingRouter);
     this.app.use("/api/v1/role", RoleRouter);
     this.app.use("/api/v1/propertydetails", PropertyDetailsRouter);
+    this.app.use("/api/v1/owner", OwnerRouter);
   }
 }
 
