@@ -47,8 +47,7 @@ class Authentication {
     landline: string,
     email: string,
     on_rent: string
-  ): string {
-    const secretKey: string = process.env.JWT_SECRET_KEY || "my-secret";
+  ): object {
     const payload: Payload = {
       owner_id: owner_id,
       role_id: role_id,
@@ -61,15 +60,26 @@ class Authentication {
       email: email,
       on_rent: on_rent
       };
-    const option = { expiresIn: process.env.JWT_EXPIRES_IN };
-
-    return jwt.sign(payload, secretKey, option);
+    const PRIVATE_KEY : string = process.env.JWT_SECRET_KEY || "my-secret";
+    const accessToken : string = jwt.sign(payload, PRIVATE_KEY , { expiresIn: process.env.JWT_EXPIRES_IN });
+    const REFRESH_PRIVATE_KEY : string = process.env.JWT_Refresh_KEY || "my-secret";
+    const refreshToken  : string = jwt.sign(payload, REFRESH_PRIVATE_KEY , { expiresIn: process.env.JWT_RefreshToken_EXPIRES_IN });
+    return { 'accessToken':accessToken, 'refreshToken':refreshToken };
   }
 
   public static validateToken(token: string): Payload | null {
     try {
-      const secretKey: string = process.env.JWT_SECRET_KEY || "my-secret";
-      return jwt.verify(token, secretKey) as Payload;
+      const accessToken : string = process.env.JWT_SECRET_KEY || "my-secret";
+      return jwt.verify(token, accessToken ) as Payload;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  public static validaterefreshToken(refreshToken: string): Payload | null {
+    try {
+      const REFRESH_PRIVATE_KEY : string = process.env.JWT_Refresh_KEY || "my-secret";
+      return jwt.verify(refreshToken, REFRESH_PRIVATE_KEY ) as Payload;
     } catch (err) {
       return null;
     }

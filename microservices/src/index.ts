@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
+import cors from "cors";
 
 import NoteRouter from "./router/NoteRouter";
 import SocietyRouter from "./router/SocietyRouter";
@@ -14,15 +15,26 @@ import OuthRouter from "./router/OuthRouter";
 
 class App {
   public app: Application;
-
+  public corsOptions = {
+  "Access-Control-Allow-Origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204,
+  "credentials": true,
+  "origin": ['http://localhost:5173']
+  }
+  
   constructor() {
     this.app = express();
-    this.databaseSync();
+    this.app.disable('x-powered-by');
     this.plugins();
+    this.databaseSync();
     this.routes();
+    
   }
 
   protected plugins(): void {
+    this.app.use(cors(this.corsOptions))
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }

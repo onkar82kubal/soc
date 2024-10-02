@@ -122,13 +122,13 @@ class OwnerController {
         try {
           const { email, password } = req.body;
           const token = await new OwnerService().login(email, password);
-          if (token === "") {
+          if (Object.keys(token).length === 0) {
             return res.status(400).json({
               status: "Bad Request!",
               message: "Wrong email or password!",
             });
           }
-          const res_token = { type: "Bearer", token: token };
+          const res_token = token;
           return res.status(200).json({
             status: "Ok!",
             message: "Successfully login!",
@@ -165,13 +165,13 @@ class OwnerController {
         let otpStatus = await new OwnerService().verifyOTP(otp)
         if(otpStatus){
           const token = await new OwnerService().loginmobile(mobile);
-          if (token === "") {
+          if (Object.keys(token).length === 0) {
             return res.status(400).json({
               status: "Bad Request!",
               message: "Wrong email or password!",
             });
           }
-          const res_token = { type: "Bearer", token: token };
+          const res_token = token;
           return res.status(200).json({
             status: "Ok!",
             message: "Successfully login!",

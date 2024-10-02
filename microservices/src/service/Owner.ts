@@ -123,7 +123,7 @@ export class OwnerService implements IOwnerService {
           }
       }
 
-    async login(email: string, password: string): Promise<string> {
+    async login(email: string, password: string): Promise<object> {
         const users = await new OwnerRepo().findByEmail(email);
         if (!users) {
           throw new Error("Bad Request!");
@@ -152,7 +152,7 @@ export class OwnerService implements IOwnerService {
             );
           }
         }
-        return "";
+        return {};
       }
     
     async generateOTP(){
@@ -167,7 +167,7 @@ export class OwnerService implements IOwnerService {
       }
     }
 
-    async loginmobile(mobile: string): Promise<string> {
+    async loginmobile(mobile: string): Promise<object> {
       const users = await new OwnerRepo().findByMobile(mobile);
       
       if (!users) {
@@ -192,6 +192,6 @@ export class OwnerService implements IOwnerService {
             );
           }
       }
-      return "";
+      return {};
     }
 }
