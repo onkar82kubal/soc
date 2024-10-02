@@ -1,68 +1,73 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+.atv,
+    .str {
+        color: #05AE0E;
+    }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+    .tag,
+    .pln,
+    .kwd {
+        color: #3472F7;
+    }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+    .atn {
+        color: #2C93FF;
+    }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+    .pln {
+        color: #333;
+    }
+
+    .com {
+        color: #999;
+    }
+    .highlight{
+      background-color: #f8f9fa;
+      padding: 20px;
   }
-  a:hover {
-    color: #747bff;
+  .highlight pre code {
+      font-size: inherit;
+      color: #212529;
   }
-  button {
-    background-color: #f9f9f9;
+  .nt {
+      color: #2f6f9f;
   }
+  .na {
+      color: #4f9fcf;
+  }
+  .rangeslider{
+      width: 100px;
+      height: 5px !important;
+  }
+  .black-color .rangeslider__fill{
+      background-color: #212529 !important;
+  }
+  .black-color .rangeslider__handle{
+    background-color: #212529 !important;
 }
+  .blue-color .rangeslider__fill{
+      background-color: #637AAE !important;
+  }
+  .blue-color .rangeslider__handle{
+    background-color: #637AAE !important;
+  }
+  .rangeslider__handle{
+      width: 15px !important;
+      height: 15px !important;
+  }
+  .rangeslider__handle:after{
+      height: 0px !important;
+  }
