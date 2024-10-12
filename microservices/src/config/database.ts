@@ -3,13 +3,21 @@ import * as dotenv from "dotenv";
 import { Note } from "../models/Note";
 import { Users } from "../models/Users";
 import { Societies } from "../models/Societies";
+import { P_Societies } from "../models/P_Societies";
 import { Notifications } from "../models/Notifications";
+import { P_Notifications } from "../models/P_Notifications";
 import { Emails } from "../models/Emails";
+import { P_Emails } from "../models/P_Emails";
 import { Vendors } from "../models/Vendors";
+import { P_Vendors } from "../models/P_Vendors";
 import { Parkings } from "../models/Parkings";
+import { P_Parkings } from "../models/P_Parkings";
 import { Roles } from "../models/Roles";
+import { P_Roles } from "../models/P_Roles";
 import { PropertyDetails } from "../models/PropertyDetails";
+import { P_PropertyDetails } from "../models/P_PropertyDetails";
 import { Owners } from "../models/Owners";
+import { P_Owners } from "../models/P_Owners";
 
 dotenv.config();
 
@@ -45,7 +53,7 @@ class Database {
       host: this.POSTGRES_HOST,
       port: this.POSTGRES_PORT,
       dialect: "postgres",
-      models:[Users,Societies,Notifications,Emails,Vendors,Parkings,Roles,PropertyDetails,Owners]
+      models:[P_Societies,P_Notifications,P_Emails,P_Vendors,P_Parkings,P_Roles,P_PropertyDetails,P_Owners]
     });
 
     await this.post_sequelize
@@ -67,7 +75,7 @@ class Database {
       username: this.MYSQL_USER,
       password: this.MYSQL_PASSWORD,
       database: this.MYSQL_DB,
-      models: [Note], 
+      models: [Notifications,Emails,Vendors,Parkings,PropertyDetails,Owners], 
       logging: false, 
     });
      

@@ -1,17 +1,18 @@
-import { Roles } from "../models/Roles";
+import { P_Roles } from "../models/P_Roles";
 
 interface IRoleRepoRepo {
-    save(roles:Roles): Promise<void>;
-    update(roles:Roles): Promise<void>;
-    getRole(): Promise<Roles[]>;
-    getRolebyId(role_id:string): Promise<Roles>
+    save(roles:P_Roles): Promise<void>;
+    update(roles:P_Roles): Promise<void>;
+    getRole(): Promise<P_Roles[]>;
+    getRolebyId(role_id:string): Promise<P_Roles>
   }
 
 
   export class RoleRepo implements IRoleRepoRepo {
-    async save(roles: Roles): Promise<void> {
+    
+    async save(roles: P_Roles): Promise<void> {
         try {
-          await Roles.create({
+          await P_Roles.create({
             role_id: roles.role_id,
             title: roles.title, 
             description: roles.description,
@@ -22,10 +23,10 @@ interface IRoleRepoRepo {
             throw new Error("Failed to create!");
           }
     }
-    async update(roles: Roles): Promise<void> {
+    async update(roles: P_Roles): Promise<void> {
         try {
             //  find existing users
-            const new_parkings = await Roles.findOne({
+            const new_parkings = await P_Roles.findOne({
               where: {
                 role_id: roles.role_id,
               },
@@ -45,9 +46,9 @@ interface IRoleRepoRepo {
             throw new Error("Failed to update!");
           }
     }
-    async getRole(): Promise<Roles[]> {
+    async getRole(): Promise<P_Roles[]> {
       try {
-          return await Roles.findAll({
+          return await P_Roles.findAll({
             where: { isactive:'Y'},
             attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
             order: [['createdAt', 'DESC']]
@@ -56,9 +57,9 @@ interface IRoleRepoRepo {
           throw new Error("Failed to feacth data by email!");
         }
       }
-      async getRolebyId(role_id:string): Promise<Roles> {
+      async getRolebyId(role_id:string): Promise<P_Roles> {
         try {
-          const new_users = await Roles.findOne({
+          const new_users = await P_Roles.findOne({
             where: {  isactive:'Y',role_id: role_id },
             attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
           });

@@ -1,4 +1,4 @@
-import { Societies } from "../models/Societies";
+import { P_Societies } from "../models/P_Societies";
 import { SocietiesRepo } from "../repository/SocietiesRepo";
 import  ObjectId  from "../utils/ObjectId";
 
@@ -11,6 +11,7 @@ interface ISocietyService {
         pincode: string, 
         email: string, 
         contact: string, 
+        istrial: string, 
         isactive: string): Promise<void>;
     updateSociety(
         society_id: string, 
@@ -19,6 +20,7 @@ interface ISocietyService {
         pincode: string, 
         email: string, 
         contact: string, 
+        istrial: string, 
         isactive: string
     ): Promise<void>;
   }
@@ -29,7 +31,8 @@ interface ISocietyService {
         address: string, 
         pincode: string, 
         email: string, 
-        contact: string,): Promise<void> {
+        contact: string,
+        istrial: string,): Promise<void> {
             
     //   const society = await new SocietiesRepo().getById(ObjectId.generateObjectId());
             
@@ -38,13 +41,14 @@ interface ISocietyService {
     //   }
   
       try {
-        const new_societies = new Societies();
+        const new_societies = new P_Societies();
         new_societies.society_id = ObjectId.generateObjectId();
         new_societies.society_name = society_name;
         new_societies.address = address;
         new_societies.pincode = pincode;
         new_societies.email = email;
         new_societies.contact = contact;
+        new_societies.istrial = istrial;
         new_societies.isactive = 'Y';
         
         await new SocietiesRepo().save(new_societies);
@@ -59,15 +63,17 @@ interface ISocietyService {
         pincode: string, 
         email: string, 
         contact: string, 
+        istrial: string, 
         isactive: string): Promise<void> {
       try {
-        const new_societies = new Societies();
+        const new_societies = new P_Societies();
         new_societies.society_id = society_id;
         new_societies.society_name = society_name;
         new_societies.address = address;
         new_societies.pincode = pincode;
         new_societies.email = email;
         new_societies.contact = contact;
+        new_societies.istrial = istrial;
         new_societies.isactive = isactive;
         await new SocietiesRepo().update(new_societies);
       } catch (error) {

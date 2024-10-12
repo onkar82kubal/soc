@@ -13,6 +13,7 @@ export class Societies extends Model {
     public static VAR_PINCODE = "pincode" as string;
     public static VAR_EMAIL = "email" as string;
     public static VAR_CONTACT = "contact" as string;
+    public static VAR_ISTRIAL = "istrial" as string;
     public static VAR_ISACTIVE = "isactive" as string;
   
     @Column({
@@ -58,6 +59,12 @@ export class Societies extends Model {
       field: Societies.VAR_CONTACT,
     })
     contact!: string;
+
+    @Column({
+      type: DataType.STRING(100),
+      field: Societies.VAR_ISTRIAL,
+    })
+    istrial!: string;
 
     @Column({
       type: DataType.STRING(100),

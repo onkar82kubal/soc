@@ -1,5 +1,6 @@
 import { PropertyDetails } from "../models/PropertyDetails";
 import { PropertyDetailRepo } from "../repository/PropertyDetailRepo";
+import { SocietiesRepo } from "../repository/SocietiesRepo";
 import  ObjectId  from "../utils/ObjectId";
 
 
@@ -35,6 +36,7 @@ export class PropertyDetailService implements IPropertyDetailService {
             area: string,): Promise<void> {
               
       try {
+        const society = await new SocietiesRepo().getById(society_id)
         const new_notifications = new PropertyDetails();
         new_notifications.property_id = ObjectId.generateObjectId();
         new_notifications.society_id = society_id;
@@ -43,9 +45,8 @@ export class PropertyDetailService implements IPropertyDetailService {
         new_notifications.configuration = configuration;
         new_notifications.size = size;
         new_notifications.area = area;
-        new_notifications.isactive = 'Y';
-        
-        await new PropertyDetailRepo().save(new_notifications);
+        new_notifications.isactive = 'Y'; 
+        await new PropertyDetailRepo().save(new_notifications,society.istrial);
       } catch (error) {
         throw new Error("Error!");
       }
@@ -61,6 +62,7 @@ export class PropertyDetailService implements IPropertyDetailService {
             area: string,
             isactive: string): Promise<void> {
       try {
+        const society = await new SocietiesRepo().getById(society_id)
         const new_notifications = new PropertyDetails();
         new_notifications.property_id = property_id;
         new_notifications.society_id = society_id;
@@ -69,14 +71,16 @@ export class PropertyDetailService implements IPropertyDetailService {
         new_notifications.configuration = configuration;
         new_notifications.size = size;
         new_notifications.area = area;
-        await new PropertyDetailRepo().update(new_notifications);
+        new_notifications.isactive = isactive;
+        await new PropertyDetailRepo().update(new_notifications,society.istrial);
       } catch (error) {
         throw new Error("Error!");
       }
     }
-    async getRole(society_id:string) {
+    async getProperties(society_id:string) {
       try {
-        return await new PropertyDetailRepo().get(society_id);
+        const society = await new SocietiesRepo().getById(society_id)
+        return await new PropertyDetailRepo().get(society.society_id,society.istrial);
         } catch (error) {
           throw new Error("Error!");
         }

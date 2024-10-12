@@ -1,0 +1,65 @@
+body {
+    margin: 0
+}
+.auth-main:after {
+  background-size: 100% 100%;
+}
+.auth-main::before {
+    background-color:#eef6ff;
+}
+.btn.btn-primary { 
+    background-color: #279EFF;
+    border-color:#279EFF;
+}
+.auth-box .helper-text { 
+    text-align: left;
+    text-decoration: none;
+}
+.auth-box .helper-text a{color:#d8e4fc;  }
+.login-right-panel {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.info-box {
+    background: #0c3569;
+    color: #ffffff;
+    border-radius: 10px;
+    height: auto;
+    width: 30%;
+    margin-right: 8%;
+}
+
+.info-box h1 {
+    font-size: 28px;
+}
+
+.info-box p {
+    font-size: 16px;
+
+}
+
+.info-box span {
+    color: #279dff;
+}
+
+.info-box .btn-primary {
+    border-radius: 8px;
+    height: 30px;
+    font-size: 16px;
+}
+.copyright {
+    left:0;
+    right:0;
+    position:absolute;
+    bottom:0;
+    color: #7384a2;
+    font-size: 11px;
+}
+.copyrText {
+    padding-left: 120px;
+    width: 100%;
+    padding-bottom: 10px;
+}

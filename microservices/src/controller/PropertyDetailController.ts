@@ -68,10 +68,10 @@ class PropertyDetailController {
             });
           }
       }
-      async getRole(req: Request, res: Response) {
+      async getProperties(req: Request, res: Response) {
         try {
-          let society_id ='66d8cf5027e4be6354b9c1c2'
-          const new_note = await new PropertyDetailService().getRole(society_id);
+          const { society_id} = req.body;
+          const new_note = await new PropertyDetailService().getProperties(society_id);
           res.status(200).json({
             status: "Ok!",
             message: "Successfully fetched",

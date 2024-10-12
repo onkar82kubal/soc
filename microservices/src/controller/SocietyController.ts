@@ -6,13 +6,14 @@ class SocietyController {
 
     async createSociety(req: Request, res: Response) {
         try {
-            const { society_name, address, pincode, email,contact } = req.body;
+            const { society_name, address, pincode, email,contact,istrial } = req.body;
             await new SocietyService().createSociety(
                 society_name,
                 address,
                 pincode,
                 email,
-                contact, 
+                contact,
+                istrial 
             );
       
             return res.status(200).json({
@@ -29,7 +30,7 @@ class SocietyController {
 
       async updateSociety(req: Request, res: Response) {
         try {
-            const {society_id, society_name, address, pincode, email,contact,isactive } = req.body;
+            const {society_id, society_name, address, pincode, email,contact,istrial,isactive } = req.body;
       
             await new SocietyService().updateSociety(
                 society_id,
@@ -38,6 +39,7 @@ class SocietyController {
                 pincode,
                 email,
                 contact,
+                istrial,
                 isactive 
             );
       

@@ -54,6 +54,7 @@ export class OwnerService implements IOwnerService {
         const hashedPassword: string = await Authentication.passwordHash(
             String(process.env.password)
           );
+        const roles = await new RoleRepo().getRolebyId(role_id)
         const new_notifications = new Owners();
         new_notifications.owner_id = ObjectId.generateObjectId();
         new_notifications.role_id = role_id;
@@ -68,7 +69,7 @@ export class OwnerService implements IOwnerService {
         new_notifications.on_rent = on_rent;
         new_notifications.isactive = 'Y';
         
-        await new OwnerRepo().save(new_notifications);
+        await new OwnerRepo().save(new_notifications,roles.title);
       } catch (error) {
         throw new Error("Error!");
       }
@@ -91,6 +92,7 @@ export class OwnerService implements IOwnerService {
         const hashedPassword: string = await Authentication.passwordHash(
             String(process.env.password)
           );
+        const roles = await new RoleRepo().getRolebyId(role_id)  
         const new_notifications = new Owners();
         new_notifications.role_id = role_id;
         new_notifications.society_id = society_id;
@@ -103,7 +105,7 @@ export class OwnerService implements IOwnerService {
         new_notifications.password = hashedPassword;
         new_notifications.on_rent = on_rent;
         new_notifications.isactive = isactive;
-        await new OwnerRepo().update(new_notifications);
+        await new OwnerRepo().update(new_notifications,roles.title);
       } catch (error) {
         throw new Error("Error!");
       }

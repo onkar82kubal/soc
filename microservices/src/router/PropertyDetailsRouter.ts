@@ -11,7 +11,7 @@ class PropertyDetailsRouters extends BaseRoutes {
       validate(updatePropertyDetailSchema),
       PropertyDetailController.updatePropertyDetail
     );
-    this.router.get("/", PropertyDetailController.getRole);
+    this.router.get("/", PropertyDetailController.getProperties);
   }
 }
 

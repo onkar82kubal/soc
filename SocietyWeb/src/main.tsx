@@ -7,6 +7,7 @@ import './asset/vendor/bootstrap/css/bootstrap.min.css';
 import './asset/vendor/font-awesome/css/font-awesome.min.css';
 import './asset/css/main.css';
 import './asset/css/blog.css';
+import './asset/css/societywale.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

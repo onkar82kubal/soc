@@ -1,4 +1,4 @@
-import { Roles } from "../models/Roles";
+import { P_Roles } from "../models/P_Roles";
 import { RoleRepo } from "../repository/RoleRepo";
 import  ObjectId  from "../utils/ObjectId";
 
@@ -28,7 +28,7 @@ export class RoleService implements IRoleService {
         isactive: string): Promise<void> {
               
       try {
-        const new_notifications = new Roles();
+        const new_notifications = new P_Roles();
         new_notifications.role_id = ObjectId.generateObjectId();
         new_notifications.title = title;
         new_notifications.description = description;
@@ -48,7 +48,7 @@ export class RoleService implements IRoleService {
         device_type: string,
         isactive: string): Promise<void> {
       try {
-        const new_notifications = new Roles();
+        const new_notifications = new P_Roles();
         new_notifications.role_id = role_id;
         new_notifications.title = title;
         new_notifications.description = description;
