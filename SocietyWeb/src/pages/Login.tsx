@@ -3,7 +3,9 @@ import { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import Logo from "../asset/images/SocietyWale Color.svg"
+import Logo from '../components/Logo'
+import Copyright from '../components/Copyright'
+import LoginrightPanel from '../components/LoginrightPanel'
 
 const Login = () => {
   localStorage.clear();
@@ -41,9 +43,8 @@ const Login = () => {
 			<div className="vertical-align-middle auth-main">
         
 				<div className="auth-box">
-            <div className="top">
-                <img src={Logo} alt="Iconic" />
-            </div>
+            
+            <Logo />
           <div className="card">
             <div className="header">
                 <p className="lead">Login to your account</p>
@@ -67,22 +68,9 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="copyright">
-            <div className='copyrText'>
-            &copy; Copyright 2024 SocietyWale. All Rights Reserved.
-            </div>
-        </div>
+        <Copyright />
 			</div>
-      <div className="login-right-panel">
-        <div className="info-box mr-5 pb-4">
-            <h1 className="mt-4 ml-4 mr-3"><span>Effortless Society<br />Management with</span><br/>Your Dedicated<br />Society Manager
-            </h1>
-            <p className="mt-3 ml-4 mr-4">Let a Trained Society Manager handle all the day-to-day operations, ensuring a seamless
-                experience while you focus on the bigger picture.</p>
-            <input type="submit" className="btn-primary border-0 input-btn text-left pl-3 pr-3 ml-4 mt-2"
-                value="Get Your Society Manager Today" />
-        </div>
-      </div>
+      <LoginrightPanel />
 		</div>
 	</div>
   )
