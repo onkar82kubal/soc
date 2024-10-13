@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logo from './Logo'
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-fixed-top">
         <div className="container-fluid">
             <div className="navbar-brand">
-                <button type="button" className="btn-toggle-offcanvas"><i className="fa fa-bars"></i></button>
-                <button type="button" className="btn-toggle-fullwidth"><i className="fa fa-bars"></i></button>
-                <a href="index.html">ICONIC</a>                
+            <Logo />
+                {/* <button type="button" className="btn-toggle-offcanvas"><i className="fa fa-bars"></i></button>
+                <button type="button" className="btn-toggle-fullwidth"><i className="fa fa-bars"></i></button> */}
             </div>
             
             <div className="navbar-right">

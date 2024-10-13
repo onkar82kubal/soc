@@ -1,8 +1,10 @@
 import React from 'react'
 import userIcon from "../asset/images/user.png"
 
+
 const Leftside = () => {
   return (
+    <>
     <div id="left-sidebar" className="sidebar">
         <button type="button" className="btn-toggle-offcanvas"><i className="fa fa-arrow-left"></i></button>
         <div className="sidebar-scroll">
@@ -35,13 +37,13 @@ const Leftside = () => {
                     </li>
                 </ul>
             </div>
+
             <ul className="nav nav-tabs">
                 <li className="nav-item"><a className="nav-link active" data-toggle="tab" href="#menu">Menu</a></li>
                 <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#Chat"><i className="icon-book-open"></i></a></li>
                 <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#setting"><i className="icon-settings"></i></a></li>
                 <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#question"><i className="icon-question"></i></a></li>                
-            </ul>
-                
+            </ul>   
             <div className="tab-content padding-0">
                 <div className="tab-pane active" id="menu">
                     <nav id="left-sidebar-nav" className="sidebar-nav">
@@ -336,7 +338,8 @@ const Leftside = () => {
                 </div>    
             </div>          
         </div>
-    </div>    
+    </div> 
+    </>
   )
 }
 

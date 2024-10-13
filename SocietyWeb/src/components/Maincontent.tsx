@@ -1,8 +1,10 @@
 import React from 'react'
+import Navigationclose from './Navigationclose'
 
 const Maincontent = () => {
   return (
-    <div id="main-content">
+    <div id="main-content"> 
+        <Navigationclose />
         <div className="container-fluid">
             <div className="block-header">
                 <div className="row">

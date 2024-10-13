@@ -63,6 +63,31 @@ body {
     width: 100%;
     padding-bottom: 10px;
 }
+.sidebar .nav-tabs .nav-link.active, .sidebar .nav-tabs .nav-link:hover, .sidebar .nav-tabs .nav-link:focus {
+    color: #0080FF;
+}
+.sidebar-nav .metismenu>li.active>a { 
+    color: #0080FF;
+}
+.sidebar-nav .metismenu>li.active { 
+    color: #0080FF;
+    border-color: #0080FF;
+}
+.sidebar-nav .metismenu ul a { color: #0080FF; }
+.sidebar-nav .metismenu>li .active>a { font-weight: bolder;}
+
+.left-sidebar { position: relative;}
+.navbar-brand { display: hide;}
+.sidebar__close  {
+    background-image: url('../../assets/images/Rectangle.svg');
+    position: absolute;
+    top: 110px;
+    left: 0; 
+    cursor: pointer;
+}
+.navbar-fixed-top .navbar-brand img {
+    width: 200px;
+ }
 
 @media(max-width: 992px) {
     .login-right-panel {

@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Leftside from '../components/Leftside'
 import Rightside from '../components/Rightside'
 import Maincontent from '../components/Maincontent'
+import Navigationclose from '../components/Navigationclose'
 
 const Dashboard = () => {
   return (
