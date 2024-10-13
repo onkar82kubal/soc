@@ -85,10 +85,51 @@ body {
     left: 0; 
     cursor: pointer;
 }
+.societyDropdown {
+    position: relative;
+    top:-45px;
+    border-radius: 40px;
+}
 .navbar-fixed-top .navbar-brand img {
-    width: 200px;
+    width: 300px;
+ }
+ .block-header h2 {
+    color: #191970;
+    font-weight: bold;
+ }
+ .dashboard-container {
+    margin-top: -42px;
+    right: 40px;
+ }
+ .navbar-fixed-top {
+    background-size: 100% 100%;    
+    background: url('/src/asset/images/NormalBG_.png') no-repeat top right fixed;  
+    height: 170px;
+ } 
+ #main-content {
+    background-color: #eef6ff;
+ }
+ .dashboard-row {
+    padding-top: 55px;
+ }
+ .nav-tabs-new>li>a { 
+    color: #475d82;
+    background: #d0e0fa;
+ }
+ .nav-tabs-new>li>a.active {
+    border: 1px solid #0080FF !important;
+    background: #0080FF;
+    color: var(--font-white);
  }
 
+ .nav-tabs-new>li>a:hover {
+    border: 1px solid #0080FF !important;
+    background: #0080FF;
+    color: var(--font-white);
+ }
+ 
+
+ 
 @media(max-width: 992px) {
     .login-right-panel {
         display: none;

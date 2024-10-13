@@ -9,11 +9,13 @@ import Navigationclose from '../components/Navigationclose'
 const Dashboard = () => {
   return (
     <div id="wrapper" className="theme-cyan">
-        {/* <Loader /> */}
+      <div className='dashBoard'>
         <Navbar />
         <Leftside />
         <Rightside />
         <Maincontent />
+      </div>
+        
     </div>
   )
 }

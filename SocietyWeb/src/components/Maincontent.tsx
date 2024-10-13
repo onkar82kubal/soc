@@ -8,19 +8,14 @@ const Maincontent = () => {
         <div className="container-fluid">
             <div className="block-header">
                 <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12">
-                        <h2>Analytical</h2>
-                        <ul className="breadcrumb">
-                            <li className="breadcrumb-item"><a href="index.html"><i className="fa fa-dashboard"></i></a></li>                            
-                            <li className="breadcrumb-item">Dashboard</li>
-                            <li className="breadcrumb-item active">Analytical</li>
-                        </ul>
-                    </div>
+                    {/* <div className="col-lg-6 col-md-6 col-sm-12">
+                        <h2 className='pageTitle'>Analytical</h2>
+                    </div> */}
                     <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="d-flex flex-row-reverse">
                             <div className="page_action">
-                                <button type="button" className="btn btn-primary"><i className="fa fa-download"></i> Download report</button>
-                                <button type="button" className="btn btn-secondary"><i className="fa fa-send"></i> Send report</button>
+                                {/* <button type="button" className="btn btn-primary"><i className="fa fa-download"></i> Download report</button>
+                                <button type="button" className="btn btn-secondary"><i className="fa fa-send"></i> Send report</button> */}
                             </div>
                             <div className="p-2 d-flex">
                                 
@@ -30,7 +25,7 @@ const Maincontent = () => {
                 </div>
             </div>
 
-            <div className="row clearfix row-deck">
+            <div className="row clearfix row-deck pt-10 dashboard-row">
                 <div className="col-lg-3 col-md-6 col-sm-6">
                     <div className="card number-chart">
                         <div className="body">
@@ -53,7 +48,7 @@ const Maincontent = () => {
                         data-line-Width="1" data-line-Color="#ffa901" data-fill-Color="#efc26b">1,4,2,3,6,2</div>
                     </div>
                 </div>
-                <div className="col-lg-3 col-md-6 col-sm-6">
+                <div className="col-lg-6 col-md-12 col-sm-12">
                     <div className="card number-chart">
                         <div className="body">
                             <span className="text-uppercase">TIME ON SITE</span>
@@ -64,7 +59,7 @@ const Maincontent = () => {
                         data-line-Width="1" data-line-Color="#38c172" data-fill-Color="#84d4a6">1,4,2,3,1,5</div>
                     </div>
                 </div>
-                <div className="col-lg-3 col-md-6 col-sm-6">
+                {/* <div className="col-lg-3 col-md-6 col-sm-6">
                     <div className="card number-chart">
                         <div className="body">
                             <span className="text-uppercase">BOUNCE RATE</span>
@@ -74,7 +69,7 @@ const Maincontent = () => {
                         <div className="sparkline" data-type="line" data-spot-Radius="0" data-offset="90" data-width="100%" data-height="50px"
                         data-line-Width="1" data-line-Color="#226fd8" data-fill-Color="#7ea7de">1,3,5,1,4,2</div>
                     </div>
-                </div>
+                </div> */}
                 <div className="col-lg-3 col-md-6 col-sm-6">
                     <div className="card top_widget">
                         <div className="body">

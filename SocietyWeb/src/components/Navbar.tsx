@@ -5,21 +5,21 @@ import Logo from './Logo'
 const Navbar = () => {
   return (
     <nav className="navbar navbar-fixed-top">
-        <div className="container-fluid">
+        <div className="container-fluid dashboard-container">
             <div className="navbar-brand">
             <Logo />
-                {/* <button type="button" className="btn-toggle-offcanvas"><i className="fa fa-bars"></i></button>
-                <button type="button" className="btn-toggle-fullwidth"><i className="fa fa-bars"></i></button> */}
             </div>
             
             <div className="navbar-right">
-                <form id="navbar-search" className="navbar-form search-form">
+            
+                {/* <form id="navbar-search" className="navbar-form search-form">
                     <input value="" className="form-control" placeholder="Search here..." type="text" />
                     <button type="button" className="btn btn-default"><i className="icon-magnifier"></i></button>
-                </form>                
+                </form>                 */}
 
                 <div id="navbar-menu">
-                    <ul className="nav navbar-nav">
+                <div className="btn btn-primary btn-lg societyDropdown">Welcome, Lords Apartment</div>
+                    {/* <ul className="nav navbar-nav">
                         <li className="dropdown">
                             <a href="javascript:void(0);" className="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i className="fa fa-bell"></i>
@@ -85,7 +85,7 @@ const Navbar = () => {
                         <li>
                             <a href="page-login.html" className="icon-menu"><i className="fa fa-power-off"></i></a>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
         </div>
