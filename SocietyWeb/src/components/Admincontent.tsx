@@ -25,11 +25,11 @@ const Admincontent = () => {
                     </div>
                     <div className="col-lg-12 col-md-12">
                         <div className="header">
-                            {/* <h2>Example Tab 2 <small><code className="highlighter-rouge">.nav-tabs-new</code></small></h2> */}
+                            {/* <h2>Example Tab 2</h2> */}
                         </div>
                         <div className="body">
                             <ul className="nav nav-tabs-new">
-                                <li className="nav-item"><a className="nav-link active show" data-toggle="tab" href="#Home-new">Create Society</a></li>
+                                <li className="nav-item"><a className="nav-link active show" data-toggle="tab" href="#Home-new">Society Master</a></li>
                                 <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#Profile-new">Profile</a></li>
                                 <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#Contact-new">Contact</a></li>
                             </ul>
