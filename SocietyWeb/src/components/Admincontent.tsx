@@ -1,6 +1,7 @@
 import React from 'react'
 import Navigationclose from './Navigationclose'
-import CreateSociety from '../pages/Admin/CreateSociety'
+import SocietyMaster from '../pages/masters/Society/SocietyMaster'
+import Societymaster from '../pages/masters/Society/societymaster'
 
 const Admincontent = () => {
   return (
@@ -35,7 +36,7 @@ const Admincontent = () => {
                             </ul>
                             <div className="tab-content">
                                 <div className="tab-pane show active" id="Home-new">
-                                    <CreateSociety />
+                                    <SocietyMaster />
                                 </div>
                                 <div className="tab-pane" id="Profile-new">
                                     <h6>Profile</h6>

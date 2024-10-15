@@ -6,8 +6,9 @@ import Forgetpassword from './pages/Forgetpassword'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin/Admin'
 
-axios.defaults.baseURL = 'http://localhost:8088/api/v1'
-axios.defaults.withCredentials = true
+
+// axios.defaults.baseURL = 'http://localhost:8088/api/v1'
+// axios.defaults.withCredentials = true
 
 
 
