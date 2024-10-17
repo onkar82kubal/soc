@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 import Copyright from '../components/Copyright'
 import LoginrightPanel from '../components/LoginrightPanel'
+import axiosInstance from '../interceptor/axiosInstance';
 
 const Login = () => {
   localStorage.clear();
@@ -19,7 +20,7 @@ const Login = () => {
     e.preventDefault()
     const { email,password } = data
     try {
-      const { data } = await axios.post('/outh',{
+      const { data } = await axiosInstance.post('/outh',{
         email:email,
         password:password
       })

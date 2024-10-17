@@ -1,31 +1,48 @@
-import React from 'react'
 import DataTable from "react-data-table-component";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from '../../../interceptor/axiosInstance';
 
 const SocietyList = () => {
-    const  perPage = 5;
+  const  perPage = 5;
     const columns = [
         {
-          name: "ID",
-          selector: (row) => row.personID,
+          name: "Society Name",
+          selector: (row) => row.society_name,
           sortable: true,
         },
         {
-          name: "Full Name",
-          selector: (row) => row.fullName,
+          name: "Address",
+          selector: (row) => row.address,
           sortable: true,
         },
         {
-          name: "Height",
-          selector: (row) => row.height,
+          name: "Contact",
+          selector: (row) => row.contact,
           sortable: true,
         },
         {
-          name: "Eye Color",
-          selector: (row) => row.eyeColor,
+          name: "email",
+          selector: (row) => row.email,
           sortable: true,
-        },
+        }
+
       ];
+  
+  // Function to fetch data using Axios
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.get('/society')
+      setData(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  // Call fetchData on component mount
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+    
     
       const rows = [
         {
@@ -33,91 +50,7 @@ const SocietyList = () => {
           fullName: "Kate Shein",
           height: "1.79m",
           eyeColor: "blue",
-        },
-        {
-          personID: 2,
-          fullName: "Ava Roberts",
-          height: "1.79m",
-          eyeColor: "green",
-        },
-        {
-          personID: 3,
-          fullName: "Geoffrey Samson Lee",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 4,
-          fullName: "Alex Smith",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 5,
-          fullName: "Leila Nora Jones",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 6,
-          fullName: "Harper Mitchell",
-          height: "1.79m",
-          eyeColor: "green",
-        },
-        {
-          personID: 7,
-          fullName: "Mason Cooper",
-          height: "1.79m",
-          eyeColor: "blue",
-        },
-        {
-          personID: 8,
-          fullName: "Hosea Noel Liam Wilson",
-          height: "1.79m",
-          eyeColor: "blue",
-        },
-        {
-          personID: 9,
-          fullName: "Yvette Montgomery",
-          height: "1.79m",
-          eyeColor: "green",
-        },
-        {
-          personID: 10,
-          fullName: "Ethan Montgomery",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 11,
-          fullName: "Olivia Parker",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 12,
-          fullName: "Jackson Nguyen",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 13,
-          fullName: "Sophia Ramirez",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 14,
-          fullName: "Elijah Patel",
-          height: "1.79m",
-          eyeColor: "brown",
-        },
-        {
-          personID: 15,
-          fullName: "Isabella Thompson",
-          height: "1.79m",
-          eyeColor: "blue",
-        },
+        }
       ];
     
       const [data, setData] = useState(rows);

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from 'axios'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from '../../../interceptor/axiosInstance';
+
 
 const SocietyCreate = () => {
     const [isTrial, setIsTrial] = useState("Y");
@@ -23,6 +24,7 @@ const SocietyCreate = () => {
         try {
             console.log(society_name);
           const { data } = await axiosInstance.post('/society',{
+            society_id:'0',
             society_name:society_name,
             address:address,
             pincode:pincode,
@@ -32,13 +34,25 @@ const SocietyCreate = () => {
             isactive:isActive
           })
           if(data.error){
-            toast.error(data.error)
+            toast.error(data.error, {
+              position: "top-center"
+            });
           } else {
-            console.log(data);
-            setData({})
+            toast.success(data.message, {
+              position: "top-center"
+            });
+            setData({society_name:'',
+              address:'',
+              pincode:'',
+              email:'',
+              contact:'',
+              istrial:'',
+              isactive:'',})
           }
         } catch(error:any) {
-          toast.error(error)
+          toast.error(error, {
+            position: "top-center"
+          });
         }
       }  
   return (
@@ -47,6 +61,7 @@ const SocietyCreate = () => {
           <div className="header">
               <h2>Create Society</h2>
           </div>
+          <ToastContainer />
           <div className="body">
               <form id="basic-form"   onSubmit={createSociety}>
                   <div className="form-group">
