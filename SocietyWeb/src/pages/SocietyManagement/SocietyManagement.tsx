@@ -1,8 +1,8 @@
 import React from 'react'
 import { Navbar } from 'react-bootstrap'
-import Leftside from '../components/Leftside'
-import Rightside from '../components/Rightside'
-import Societycontent from '../components/Societycontent'
+import Leftside from '../../components/Leftside'
+import Rightside from '../../components/Rightside'
+import Societycontent from './Societycontent'
 
 const SocietyManagement = () => {
   return (

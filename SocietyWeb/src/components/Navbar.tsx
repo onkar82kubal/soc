@@ -1,25 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Logo from './Logo'
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-fixed-top">
-        <div className="container-fluid dashboard-container">
-            <div className="navbar-brand">
-            <Logo />
-            </div>
-            
-            <div className="navbar-right">
-            
-                {/* <form id="navbar-search" className="navbar-form search-form">
+      <div className="container-fluid dashboard-container">
+        <div className="navbar-brand">
+          <Logo />
+        </div>
+
+        <div className="navbar-right">
+          {/* <form id="navbar-search" className="navbar-form search-form">
                     <input value="" className="form-control" placeholder="Search here..." type="text" />
                     <button type="button" className="btn btn-default"><i className="icon-magnifier"></i></button>
                 </form>                 */}
 
-                <div id="navbar-menu">
-                <div className="btn btn-primary btn-lg societyDropdown">Welcome, Lords Apartment</div>
-                    {/* <ul className="nav navbar-nav">
+          <div id="navbar-menu">
+            <div className="btn btn-primary btn-lg societyDropdown">
+              Welcome, Lords Apartment
+            </div>
+            {/* <ul className="nav navbar-nav">
                         <li className="dropdown">
                             <a href="javascript:void(0);" className="dropdown-toggle icon-menu" data-toggle="dropdown">
                                 <i className="fa fa-bell"></i>
@@ -86,11 +87,11 @@ const Navbar = () => {
                             <a href="page-login.html" className="icon-menu"><i className="fa fa-power-off"></i></a>
                         </li>
                     </ul> */}
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

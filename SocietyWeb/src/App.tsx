@@ -4,7 +4,7 @@ import Login from './pages/Login'
 import Forgetpassword from './pages/Forgetpassword'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin/Admin'
-import SocietyManagement from './pages/SocietyManagement'
+import SocietyManagement from './pages/SocietyManagement/SocietyManagement'
 
 
 const App =() => {

@@ -1,18 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8088/api/v1', // Replace with your API base URL
+  baseURL: "http://localhost:8088/api/v1", // Replace with your API base URL
   timeout: 1000,
-  headers: { 'Content-Type': 'application/json','Accept': 'application/json, text/plain, */*','Access-Control-Allow-Methods': 'POST, GET, OPTIONS' }
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json, text/plain, */*",
+    "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  },
 }); // Create the axios instance
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
- (config) => {
+  (config) => {
     // Do something before the request is sent
     // For example, add an authentication token to the headers
-    const token = localStorage.getItem('ACCESS_TOKEN'); // taking auth token from local Storage
-     if (token) {
+    const token = localStorage.getItem("ACCESS_TOKEN"); // taking auth token from local Storage
+    if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -23,4 +27,4 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-export default axiosInstance
+export default axiosInstance;
