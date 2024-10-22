@@ -55,7 +55,7 @@ const Leftside = () => {
                                 </ul> */}
                             </li>
                             <li>
-                                <a href="#App" className="has-arrow"><i className="fa fa-th-large"></i><span>Society Management</span></a>
+                                <a href="society-management" className="has-arrow"><i className="fa fa-th-large"></i><span>Society Management</span></a>
                                 {/* <ul>
                                     <li><a href="app-inbox.html">Inbox</a></li>
                                     <li><a href="javascript:void(0);"><span>File Manager</span></a>

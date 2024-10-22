@@ -130,8 +130,15 @@ body {
  .tab-content {
     padding-left: 0;
 }
- 
-
+.card .header { padding-bottom: 0; } 
+.required-field::after {
+    content: "*";
+    color: red;
+    margin-left:2px
+  }
+.addremove {
+    padding-top: 35px;
+}
  
 @media(max-width: 992px) {
     .login-right-panel {
