@@ -139,6 +139,10 @@ body {
 .addremove {
     padding-top: 35px;
 }
+.parsley-errors-list {
+    list-style-type: none;
+}
+
  
 @media(max-width: 992px) {
     .login-right-panel {
