@@ -3,7 +3,9 @@ type AddsocietyForm = {
   no_gates: number;
   no_floors: number;
   no_flats: number;
-  wing_name: string;
+  wing_names: {
+    wing: string;
+  }[];
   address: string;
   region: string;
   city: string;
@@ -14,5 +16,4 @@ type AddsocietyForm = {
   refered_by: string;
   monthly_charges: number;
 };
-
 export default AddsocietyForm;

@@ -136,13 +136,19 @@ body {
     color: red;
     margin-left:2px
   }
-.addremove {
-    padding-top: 35px;
-}
+.input-group-append {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
 .parsley-errors-list {
     list-style-type: none;
 }
-
+.header-wings {
+    padding: 0!important;
+}
+.header-wings .fa {
+    padding-left: 10px;
+}
  
 @media(max-width: 992px) {
     .login-right-panel {

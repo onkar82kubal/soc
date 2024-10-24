@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { z, ZodType } from "zod";
 import AddsocietyForm from "../../types/Addsociety";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import moment from "moment";
 
@@ -35,13 +35,17 @@ const Addsociety = () => {
       })
       .min(1)
       .max(50000),
-    wing_name: z
-      .string({
-        required_error: "Wing name is required.",
-        invalid_type_error: "Wing name is required.",
+    wing_names: z.array(
+      z.object({
+        wing: z
+          .string({
+            required_error: "wing is required.",
+            invalid_type_error: "Wing is required.",
+          })
+          .min(1, "wing name is required.")
+          .max(50, "wing name must be less than 50 characters."),
       })
-      .min(1, "Wing name is required.")
-      .max(500000),
+    ),
     address: z
       .string({
         required_error: "Address is required.",
@@ -109,9 +113,16 @@ const Addsociety = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<AddsocietyForm>({
     resolver: zodResolver(schema),
   });
+
+  const { fields, append, remove } = useFieldArray({
+    name: "wing_names",
+    control,
+  });
+
   const submitData = (data: AddsocietyForm) => {
     console.log(data);
   };
@@ -198,28 +209,46 @@ const Addsociety = () => {
               </ul>
             </div>
           </div>
+          <div className="header header-wings" onClick={() => append({})}>
+            <label className="required-field">Add Wings</label>
+            <i className="fa fa-plus"></i>
+          </div>
           <div className="row clearfix">
-            <div className="col-lg-3 col-md-6 col-sm-12">
-              <div className="form-group">
-                <label className="required-field">Wing Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  {...register("wing_name")}
-                />
-                <ul className="parsley-errors-list filled">
-                  <li className="parsley-required">
-                    {errors.wing_name && errors.wing_name.message}
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-lg-6 col-md-6 col-sm-12 mb-50">
-              <div className="form-group addremove">
-                <i className="fa fa-trash-o  mr-3"></i>
-                <i className="fa fa-plus"></i>
-              </div>
-            </div>
+            {fields.map((field, index) => {
+              const errorForField = errors?.wing_names?.[index]?.wing;
+              return (
+                <div
+                  className="col-lg-3 col-md-6 col-sm-12 wing"
+                  key={field.id}
+                >
+                  <div className="form-group">
+                    <label className="required-field">Wing Name</label>
+                    <div className="input-group">
+                      <div className="custom-file">
+                        <input
+                          type="text"
+                          className="form-control"
+                          {...register(`wing_names.${index}.wing` as const)}
+                        />
+                      </div>
+                      {index > 0 && (
+                        <div className="input-group-append">
+                          <i
+                            className="fa fa-trash-o  mr-3"
+                            onClick={() => remove(index)}
+                          ></i>
+                        </div>
+                      )}
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorForField?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="row clearfix">
             <div className="col-lg-9 col-md-6 col-sm-12">
