@@ -149,7 +149,24 @@ body {
 .header-wings .fa {
     padding-left: 10px;
 }
+.media-left {
+    width: 140px;
+    height: 140px;
+    border: 1px solid #0080FF;
+}
+.img-pos{
+    position: relative;
+}
+.img-pos.close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+}
  
+.amenities_trash {
+    padding-top: 25px;
+}
 @media(max-width: 992px) {
     .login-right-panel {
         display: none;
