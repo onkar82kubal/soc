@@ -142,6 +142,8 @@ body {
   }
 .parsley-errors-list {
     list-style-type: none;
+    padding-left: 10px;
+    margin: 0;
 }
 .header-wings {
     padding: 0!important;

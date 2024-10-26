@@ -31,27 +31,27 @@ const Societyprofile = () => {
       ),
     amenities: z.array(
       z.object({
-        name: z
+        amenity_name: z
           .string({
-            required_error: "Amenity is required.",
-            invalid_type_error: "Amenity is required.",
+            required_error: "Name is required.",
+            invalid_type_error: "Name is required.",
           })
-          .min(1, "Amenity name is required.")
-          .max(50, "Amenity name must be less than 50 characters."),
-        amenit_type: z
+          .min(1, "Name is required.")
+          .max(50, "Name must be less than 50 characters."),
+        amenity_type: z
           .string({
-            required_error: "Amenity type is required.",
-            invalid_type_error: "Amenity type is required.",
+            required_error: "Type is required.",
+            invalid_type_error: "Type is required.",
           })
-          .min(1, "Amenity type name is required.")
-          .max(50, "Amenity type must be less than 50 characters."),
+          .min(1, "Type is required.")
+          .max(50, "Type must be less than 50 characters."),
         payment_type: z
           .string({
-            required_error: "Amenity type is required.",
-            invalid_type_error: "Amenity type is required.",
+            required_error: "This is required.",
+            invalid_type_error: "This is required.",
           })
-          .min(1, "Amenity type name is required.")
-          .max(50, "Amenity type must be less than 50 characters."),
+          .min(1, "This is required.")
+          .max(50, "This must be less than 50 characters."),
         payment_charge: z
           .number({
             required_error: "This is required.",
@@ -61,9 +61,9 @@ const Societyprofile = () => {
           .max(20000000),
       })
     ),
-    commitee_member: z.array(
+    commitee_members: z.array(
       z.object({
-        name: z
+        member_name: z
           .string({
             required_error: "Name is required.",
             invalid_type_error: "Name is required.",
@@ -79,18 +79,18 @@ const Societyprofile = () => {
           .max(50, "Role must be less than 50 characters."),
         contact_number: z
           .number({
-            required_error: "Contact number is required.",
-            invalid_type_error: "Contact number is required.",
+            required_error: "Contact is required.",
+            invalid_type_error: "Contact is required.",
           })
-          .min(1, "Contact number is required.")
-          .max(50, "Contact number must be less than 50 characters."),
+          .min(1, "Contact is required.")
+          .max(9, "Contact must be less than 9 characters."),
         contact_email: z
           .string({
-            required_error: "Contact email is required.",
-            invalid_type_error: "Contact email is required.",
+            required_error: "Email is required.",
+            invalid_type_error: "Email is required.",
           })
-          .min(1, "Contact email is required.")
-          .max(50, "Contact email must be less than 50 characters."),
+          .email()
+          .max(50, "Email must be less than 50 characters."),
       })
     ),
   });
@@ -103,11 +103,17 @@ const Societyprofile = () => {
   } = useForm<SocietyProfile>({
     resolver: zodResolver(schema),
   });
+  const {
+    fields: amenityFields,
+    append: amenitydAppend,
+    remove: amenityRemove,
+  } = useFieldArray({ control, name: "amenities" });
 
-  const { fields, append, remove } = useFieldArray({
-    name: "amenities",
-    control,
-  });
+  const {
+    fields: commiteeFields,
+    append: commiteedAppend,
+    remove: commiteeRemove,
+  } = useFieldArray({ control, name: "commitee_members" });
 
   const submitData = (data: SocietyProfile) => {
     console.log(data);
@@ -166,59 +172,55 @@ const Societyprofile = () => {
           </div>
           <div className="header header-wings">
             <label className="required-field">Amenities</label>
-            <i className="fa fa-plus" onClick={() => append({})}></i>
+            <i className="fa fa-plus" onClick={() => amenitydAppend({})}></i>
           </div>
-
-          {fields.map((field, index) => {
-            const errorForamenity_name =
+          {amenityFields.map((field, index) => {
+            const errorFormamenity_name =
               errors?.amenities?.[index]?.amenity_name;
-            const errorForamenit_type = errors?.amenities?.[index]?.amenit_type;
-            const errorForpayment_charge =
+            const errorFormamenity_type =
+              errors?.amenities?.[index]?.amenity_type;
+            const errorFormpayment_type =
+              errors?.amenities?.[index]?.payment_type;
+            const errorFormpayment_charge =
               errors?.amenities?.[index]?.payment_charge;
             return (
               <>
                 <div className="row clearfix">
-                  <div
-                    className="col-lg-3 col-md-6 col-sm-12 wing"
-                    key={field.id}
-                  >
+                  <div className="col-lg-3 col-md-6 col-sm-12" key={field.id}>
                     <div className="form-group">
-                      <label className="required-field">Amenity name</label>
+                      <label className="required-field">Amenity Name</label>
                       <div className="input-group">
-                        <div className="custom-file">
-                          <input
-                            type="text"
-                            className="form-control"
-                            {...register(
-                              `amenities.${index}.amenity_name` as const
-                            )}
-                          />
-                        </div>
-                        <ul className="parsley-errors-list filled">
-                          <li className="parsley-required">
-                            {errorForamenity_name?.message ?? <>&nbsp;</>}
-                          </li>
-                        </ul>
+                        <input
+                          type="text"
+                          className="form-control"
+                          {...register(
+                            `amenities.${index}.amenity_name` as const
+                          )}
+                        />
                       </div>
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorFormamenity_name?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                  <div
-                    className="col-lg-3 col-md-6 col-sm-12 wing"
-                    key={field.id}
-                  >
+                  <div className="col-lg-2 col-md-6 col-sm-12" key={field.id}>
                     <div className="form-group">
                       <label className="required-field">Free/Paid</label>
                       <select
-                        className="form-control show-tick m-b-10"
-                        {...register("amenit_type")}
+                        className="form-control show-tick"
+                        {...register(
+                          `amenities.${index}.amenity_type` as const
+                        )}
                       >
                         <option value=""></option>
                         <option value="1">Free</option>
                         <option value="2">Paid</option>
                       </select>
-                      <ul className="parsley-errors-list filled">
+                      <ul className="parsley-errors-list filled mt-0">
                         <li className="parsley-required">
-                          {errorForamenit_type?.message ?? <>&nbsp;</>}
+                          {errorFormamenity_type?.message ?? <>&nbsp;</>}
                         </li>
                       </ul>
                     </div>
@@ -228,10 +230,12 @@ const Societyprofile = () => {
                     key={field.id}
                   >
                     <div className="form-group">
-                      <label className="required-field">Per day/Per Hour</label>
+                      <label className="required-field">Per Day/Hour</label>
                       <select
-                        className="form-control show-tick m-b-10"
-                        {...register("payment_charge")}
+                        className="form-control show-tick"
+                        {...register(
+                          `amenities.${index}.payment_charge` as const
+                        )}
                       >
                         <option value=""></option>
                         <option value="1">Per day</option>
@@ -239,21 +243,40 @@ const Societyprofile = () => {
                       </select>
                       <ul className="parsley-errors-list filled">
                         <li className="parsley-required">
-                          {errorForpayment_charge?.message ?? <>&nbsp;</>}
+                          {errorFormpayment_charge?.message ?? <>&nbsp;</>}
                         </li>
                       </ul>
                     </div>
                   </div>
-                  <div
-                    className="col-lg-3 col-md-6 col-sm-12 wing "
-                    key={field.id}
-                  >
+                  <div className="col-lg-3 col-md-6 col-sm-12" key={field.id}>
+                    <div className="form-group">
+                      <label className="required-field">Charges</label>
+                      <div className="input-group">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">Rs.</span>
+                        </div>
+                        <input
+                          type="number"
+                          className="form-control"
+                          {...register(
+                            `amenities.${index}.payment_charge` as const
+                          )}
+                        />
+                      </div>
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorFormpayment_charge?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="col-lg-1 col-md-6 col-sm-12" key={field.id}>
                     <div className="form-group">
                       {index > 0 && (
                         <div className="input-group-append amenities_trash">
                           <i
                             className="fa fa-trash-o  mr-3"
-                            onClick={() => remove(index)}
+                            onClick={() => amenityRemove(index)}
                           ></i>
                         </div>
                       )}
@@ -263,69 +286,121 @@ const Societyprofile = () => {
               </>
             );
           })}
-          <div className="header-society">
-            <label>Commitee members</label>
+          <div className="header header-wings">
+            <label className="required-field">Commitee members</label>
+            <i className="fa fa-plus" onClick={() => commiteedAppend({})}></i>
           </div>
-          <div className="row clearfix">
-            <div className="col-lg-3 col-md-6 col-sm-12">
-              <div className="form-group">
-                <label className="required-field">Car</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  required
-                  data-parsley-errors-container="#error-name"
-                />
-              </div>
-              <div id="error-name"></div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-12">
-              <div className="form-group">
-                <label className="required-field">Role</label>
-                <select
-                  className="form-control show-tick m-b-10"
-                  data-parsley-required
-                  data-parsley-trigger-after-failure="change"
-                  data-parsley-errors-container="#error-role"
-                >
-                  <option value=""></option>
-                  <option value="1">Free</option>
-                  <option value="2">Paid</option>
-                </select>
-                <div id="error-role"></div>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-12">
-              <div className="form-group">
-                <label className="required-field">Contact</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  required
-                  data-parsley-errors-container="#error-contact"
-                />
-              </div>
-              <div id="error-contact"></div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-12">
-              <div className="form-group">
-                <label className="required-field">Email</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  required
-                  data-parsley-errors-container="#error-email"
-                />
-              </div>
-              <div id="error-email"></div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-12 mb-50">
-              <div className="form-group addremove">
-                <i className="fa fa-trash-o  mr-3"></i>
-                <i className="fa fa-plus"></i>
-              </div>
-            </div>
-          </div>
+          {commiteeFields.map((field, index) => {
+            const errorFormember_name =
+              errors?.commitee_members?.[index]?.member_name;
+            const errorFormrole_type =
+              errors?.commitee_members?.[index]?.role_type;
+            const errorFormcontact_number =
+              errors?.commitee_members?.[index]?.contact_number;
+            const errorFormcontact_email =
+              errors?.commitee_members?.[index]?.contact_email;
+            return (
+              <>
+                <div className="row clearfix">
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 wing"
+                    key={field.id}
+                  >
+                    <div className="form-group">
+                      <label className="required-field">Member name</label>
+                      <div className="input-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          {...register(
+                            `commitee_members.${index}.member_name` as const
+                          )}
+                        />
+                      </div>
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorFormember_name?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div
+                    className="col-lg-2 col-md-6 col-sm-12 wing"
+                    key={field.id}
+                  >
+                    <div className="form-group">
+                      <label className="required-field">Role</label>
+                      <select className="form-control show-tick">
+                        <option value=""></option>
+                        <option value="1">Free</option>
+                        <option value="2">Paid</option>
+                      </select>
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorFormrole_type?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 wing"
+                    key={field.id}
+                  >
+                    <div className="form-group">
+                      <label className="required-field">Contact</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        {...register(
+                          `commitee_members.${index}.contact_number` as const
+                        )}
+                      />
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorFormcontact_number?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 wing"
+                    key={field.id}
+                  >
+                    <div className="form-group">
+                      <label className="required-field">Email</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        {...register(
+                          `commitee_members.${index}.contact_email` as const
+                        )}
+                      />
+                      <ul className="parsley-errors-list filled">
+                        <li className="parsley-required">
+                          {errorFormcontact_email?.message ?? <>&nbsp;</>}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {index > 0 && (
+                    <div
+                      className="col-lg-1 col-md-6 col-sm-12 wing "
+                      key={field.id}
+                    >
+                      <div className="form-group">
+                        <div className="input-group-append amenities_trash">
+                          <i
+                            className="fa fa-trash-o  mr-3"
+                            onClick={() => commiteeRemove(index)}
+                          ></i>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            );
+          })}
           <div className="row clearfix">
             <div className="col-lg-3 col-md-6 col-sm-12">
               <div className="form-group">
