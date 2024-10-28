@@ -132,7 +132,7 @@ const Addsociety = () => {
       <div className="header header-society">
         <h4>Add Society Details</h4>
       </div>
-      <form onSubmit={handleSubmit(submitData)} id="basic-form">
+      <form id="basic-form">
         <div className="body demo-card">
           <div className="header-society">
             <label>Society Details</label>

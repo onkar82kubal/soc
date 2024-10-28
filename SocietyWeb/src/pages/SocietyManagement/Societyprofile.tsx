@@ -234,7 +234,7 @@ const Societyprofile = () => {
                       <select
                         className="form-control show-tick"
                         {...register(
-                          `amenities.${index}.payment_charge` as const
+                          `amenities.${index}.payment_type` as const
                         )}
                       >
                         <option value=""></option>
@@ -243,7 +243,7 @@ const Societyprofile = () => {
                       </select>
                       <ul className="parsley-errors-list filled">
                         <li className="parsley-required">
-                          {errorFormpayment_charge?.message ?? <>&nbsp;</>}
+                          {errorFormpayment_type?.message ?? <>&nbsp;</>}
                         </li>
                       </ul>
                     </div>
