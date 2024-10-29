@@ -132,7 +132,7 @@ const Addsociety = () => {
       <div className="header header-society">
         <h4>Add Society Details</h4>
       </div>
-      <form id="basic-form">
+      <form id="basic-form" onSubmit={handleSubmit(submitData)}>
         <div className="body demo-card">
           <div className="header-society">
             <label>Society Details</label>
@@ -143,8 +143,12 @@ const Addsociety = () => {
                 <label className="required-field">Society Name</label>
                 <input
                   type="text"
-                  className="form-control"
                   {...register("society_name")}
+                  className={
+                    errors.society_name
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                 />
                 <ul className="parsley-errors-list filled">
                   <li className="parsley-required">
@@ -159,7 +163,11 @@ const Addsociety = () => {
               <div className="form-group">
                 <label className="required-field">No. of Gates</label>
                 <select
-                  className="form-control show-tick m-b-10"
+                  className={
+                    errors.no_gates
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("no_gates", { valueAsNumber: true })}
                 >
                   <option value=""></option>
@@ -178,7 +186,11 @@ const Addsociety = () => {
               <div className="form-group">
                 <label className="required-field">No. of Floors</label>
                 <select
-                  className="form-control show-tick m-b-10"
+                  className={
+                    errors.no_floors
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("no_floors", { valueAsNumber: true })}
                 >
                   <option value=""></option>
@@ -198,7 +210,11 @@ const Addsociety = () => {
                 <label className="required-field">No. of flats</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={
+                    errors.no_flats
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("no_flats", { valueAsNumber: true })}
                 />
               </div>
@@ -217,28 +233,22 @@ const Addsociety = () => {
             {fields.map((field, index) => {
               const errorForField = errors?.wing_names?.[index]?.wing;
               return (
-                <div
-                  className="col-lg-3 col-md-6 col-sm-12 wing"
-                  key={field.id}
-                >
-                  <div className="form-group">
-                    <label className="required-field">Wing Name</label>
-                    <div className="input-group">
-                      <div className="custom-file">
-                        <input
-                          type="text"
-                          className="form-control"
-                          {...register(`wing_names.${index}.wing` as const)}
-                        />
-                      </div>
-                      {index > 0 && (
-                        <div className="input-group-append">
-                          <i
-                            className="fa fa-trash-o  mr-3"
-                            onClick={() => remove(index)}
-                          ></i>
-                        </div>
-                      )}
+                <>
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 wing"
+                    key={field.id}
+                  >
+                    <div className="form-group">
+                      <label className="required-field">Wing Name</label>
+                      <input
+                        type="text"
+                        {...register(`wing_names.${index}.wing` as const)}
+                        className={
+                          errors.wing_names
+                            ? "form-control show-tick m-b-10 parsley-error"
+                            : "form-control show-tick m-b-10"
+                        }
+                      />
                       <ul className="parsley-errors-list filled">
                         <li className="parsley-required">
                           {errorForField?.message ?? <>&nbsp;</>}
@@ -246,7 +256,19 @@ const Addsociety = () => {
                       </ul>
                     </div>
                   </div>
-                </div>
+                  <div className="col-lg-1 col-md-6 col-sm-12" key={field.id}>
+                    <div className="form-group">
+                      {index > 0 && (
+                        <div className="input-group-append amenities_trash">
+                          <i
+                            className="fa fa-trash-o  mr-3"
+                            onClick={() => remove(index)}
+                          ></i>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
               );
             })}
           </div>
@@ -255,7 +277,11 @@ const Addsociety = () => {
               <div className="form-group">
                 <label className="required-field">Address</label>
                 <textarea
-                  class="form-control"
+                  className={
+                    errors.address
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   rows="5"
                   cols="30"
                   {...register("address")}
@@ -273,8 +299,12 @@ const Addsociety = () => {
               <div className="form-group">
                 <label className="required-field">Region</label>
                 <select
-                  className="form-control show-tick m-b-10"
                   {...register("region")}
+                  className={
+                    errors.region
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                 >
                   <option value=""></option>
                   <option value="1">One</option>
@@ -292,8 +322,12 @@ const Addsociety = () => {
               <div className="form-group">
                 <label className="required-field">City</label>
                 <select
-                  className="form-control show-tick m-b-10"
                   {...register("city")}
+                  className={
+                    errors.city
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                 >
                   <option value=""></option>
                   <option value="1">One</option>
@@ -312,7 +346,11 @@ const Addsociety = () => {
                 <label className="required-field">Pincode</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={
+                    errors.pincode
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("pincode", { valueAsNumber: true })}
                 />
                 <ul className="parsley-errors-list filled">
@@ -332,7 +370,11 @@ const Addsociety = () => {
                 <label className="required-field">Contact</label>
                 <input
                   type="number"
-                  className="form-control"
+                  className={
+                    errors.primary_contact
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("primary_contact", { valueAsNumber: true })}
                 />
                 <ul className="parsley-errors-list filled">
@@ -347,7 +389,11 @@ const Addsociety = () => {
                 <label className="required-field">Email</label>
                 <input
                   type="email"
-                  className="form-control"
+                  className={
+                    errors.primary_email
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("primary_email")}
                 />
                 <ul className="parsley-errors-list filled">
@@ -367,9 +413,12 @@ const Addsociety = () => {
                 <label className="required-field">Date of Onboarding</label>
                 <input
                   type="date"
-                  className="form-control"
                   {...register("date_onboarding")}
-                  // min={moment().format("DD/MM/YYYY")}
+                  className={
+                    errors.date_onboarding
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                 />
                 <ul className="parsley-errors-list filled">
                   <li className="parsley-required">
@@ -382,8 +431,12 @@ const Addsociety = () => {
               <div className="form-group">
                 <label className="required-field">Refered by</label>
                 <select
-                  className="form-control show-tick m-b-10"
                   {...register("refered_by")}
+                  className={
+                    errors.refered_by
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                 >
                   <option value=""></option>
                   <option value="1">One</option>
@@ -402,7 +455,11 @@ const Addsociety = () => {
                 <label className="required-field">Monthly Charges</label>
                 <input
                   type="number"
-                  className="form-control"
+                  className={
+                    errors.monthly_charges
+                      ? "form-control show-tick m-b-10 parsley-error"
+                      : "form-control show-tick m-b-10"
+                  }
                   {...register("monthly_charges", { valueAsNumber: true })}
                 />
                 <ul className="parsley-errors-list filled">

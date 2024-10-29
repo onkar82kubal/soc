@@ -201,8 +201,12 @@ const Addmember = () => {
                 <label className="required-field">Flat Number</label>
                 <input
                   type="text"
-                  className="form-control"
                   {...register("flat_number")}
+                  className={
+                    errors.flat_number
+                      ? "form-control parsley-error"
+                      : "form-control"
+                  }
                 />
                 <ul className="parsley-errors-list filled">
                   <li className="parsley-required">
@@ -210,7 +214,6 @@ const Addmember = () => {
                   </li>
                 </ul>
               </div>
-              <div id="error-flatnumber"></div>
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12">
               <div className="form-group">
