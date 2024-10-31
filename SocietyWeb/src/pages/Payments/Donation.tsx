@@ -63,32 +63,38 @@ const Donation = () => {
           <div className="header-society">
             <label>Payment Details</label>
           </div>
-          <label className="fancy-checkbox">
+          <label className="fancy-radio">
             <input
-              type="checkbox"
+              type="radio"
               name="checkbox"
               required
               data-parsley-errors-container="#error-checkbox"
             />
-            <span>Cheque</span>
+            <span>
+              <i></i>Cheque
+            </span>
           </label>
-          <label className="fancy-checkbox">
+          <label className="fancy-radio">
             <input
-              type="checkbox"
+              type="radio"
               name="checkbox"
               required
               data-parsley-errors-container="#error-checkbox"
             />
-            <span>Online</span>
+            <span>
+              <i></i>Online
+            </span>
           </label>
-          <label className="fancy-checkbox">
+          <label className="fancy-radio">
             <input
-              type="checkbox"
+              type="radio"
               name="checkbox"
               required
               data-parsley-errors-container="#error-checkbox"
             />
-            <span>Cash</span>
+            <span>
+              <i></i>Cash
+            </span>
           </label>
           <div className="row clearfix">
             <div className="col-lg-3 col-md-6 col-sm-12">
