@@ -1,5 +1,6 @@
 import { P_Roles } from "../models/P_Roles";
 import { RoleRepo } from "../repository/RoleRepo";
+import { SocietiesRepo } from "../repository/SocietiesRepo";
 import  ObjectId  from "../utils/ObjectId";
 
 

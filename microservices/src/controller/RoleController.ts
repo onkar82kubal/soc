@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { RoleService } from "../service/Role";
+import { SocietyService } from "../service/Society";
 
 
 class RoleController {
@@ -64,10 +65,26 @@ class RoleController {
         try {
           let society_id ='66d8cf5027e4be6354b9c1c2'
           const new_note = await new RoleService().getRole();
+          const new_society = await new SocietyService().findAll();  
+          const arrayC:any = [];
+          new_note.forEach(function(element){
+            let obj = new_society.find(o => o.society_id === element.society_id)
+            let society_name = null
+            if (typeof obj !== "undefined" ) {
+              society_name = obj.society_name
+          }
+            arrayC.push({
+              society_id:element.society_id,
+              device_type:element.device_type,
+              description:element.description,
+              title:element.title,
+              society_name:society_name
+            });
+          });
           res.status(200).json({
             status: "Ok!",
             message: "Successfully fetched",
-            data: new_note,
+            data: arrayC,
           });
         } catch (err) {
           res.status(500).json({

@@ -1,4 +1,5 @@
 import { P_Roles } from "../models/P_Roles";
+import { P_Societies } from "../models/P_Societies";
 
 interface IRoleRepoRepo {
     save(roles:P_Roles): Promise<void>;
@@ -48,11 +49,12 @@ interface IRoleRepoRepo {
     }
     async getRole(): Promise<P_Roles[]> {
       try {
-          return await P_Roles.findAll({
+          const results = await P_Roles.findAll({
             where: { isactive:'Y'},
             attributes:{ exclude:['id','isactive','createdAt','updatedAt']},
             order: [['createdAt', 'DESC']]
           });
+          return results
         } catch (error) {
           throw new Error("Failed to feacth data by email!");
         }
