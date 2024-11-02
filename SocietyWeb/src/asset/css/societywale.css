@@ -169,6 +169,10 @@ body {
 .amenities_trash {
     padding-top: 25px;
 }
+.dataTableAction li{
+    display:inline-block;
+    padding-right: 10px;
+}
 @media(max-width: 992px) {
     .login-right-panel {
         display: none;

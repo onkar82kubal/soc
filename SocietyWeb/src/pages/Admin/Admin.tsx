@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar } from "react-bootstrap";
 import Leftside from "../../components/Leftside";
 import Rightside from "../../components/Rightside";
-import Admincontent from "../../components/Admincontent";
+import Admincontent from "./Admincontent";
 
 const Admin = () => {
   return (
