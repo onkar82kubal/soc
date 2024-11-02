@@ -10,6 +10,7 @@ import axiosInstance from "../../interceptor/axiosInstance";
 export interface UserInterface {
   role_id: string;
   society_id: string;
+  society_name: string;
   description: string;
   device_type: string;
   title: string;
@@ -22,7 +23,7 @@ const RoleList: React.FC = () => {
     { headerName: "Title", field: "title", filter: true },
     { headerName: "Description", field: "description", filter: true },
     { headerName: "Device", field: "device_type", filter: true },
-    { headerName: "Society", field: "society_id", filter: true },
+    { headerName: "Society", field: "society_name", filter: true },
     {
       headerName: "Actions",
       cellRenderer: (rowData: any) => {
