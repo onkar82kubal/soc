@@ -1,28 +1,36 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8088/api/v1", // Replace with your API base URL
+  baseURL: "http://localhost:8088/api/v1",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json, text/plain, */*",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   },
-}); // Create the axios instance
+});
 
-// Add a request interceptor
+//Add a request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    // Do something before the request is sent
-    // For example, add an authentication token to the headers
-    const token = localStorage.getItem("ACCESS_TOKEN"); // taking auth token from local Storage
+    document.body.classList.add("loading-indicator");
+    const token = localStorage.getItem("ACCESS_TOKEN");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   (error) => {
-    // Handle the error
+    return Promise.reject(error);
+  }
+);
+//Add a response interceptor
+axiosInstance.interceptors.response.use(
+  (config) => {
+    document.body.classList.remove("loading-indicator");
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );
