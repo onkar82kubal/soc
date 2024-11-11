@@ -6,6 +6,8 @@ import { AgGridReact } from "ag-grid-react";
 import { useEffect, useState } from "react";
 import { ColDef } from "ag-grid-community";
 import axiosInstance from "../../interceptor/axiosInstance";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export interface UserInterface {
   role_id: string;
@@ -17,7 +19,7 @@ export interface UserInterface {
   actions: string;
 }
 
-const RoleList: React.FC = () => {
+const RoleList = () => {
   const [rowData, setRowData] = useState<UserInterface[]>([]);
   const [colDefs] = useState<ColDef<UserInterface>[]>([
     { headerName: "Title", field: "title", filter: true },
@@ -41,7 +43,7 @@ const RoleList: React.FC = () => {
                 <i
                   className="fa fa-edit"
                   aria-hidden="true"
-                  onClick={() => onDeleteRow(rowData.data.role_id)}
+                  onClick={() => onEditRow(rowData.data.role_id)}
                 ></i>
               </li>
             </ul>
@@ -51,7 +53,15 @@ const RoleList: React.FC = () => {
     },
   ]);
   const onDeleteRow = (oldData: any) => {
-    console.log(oldData);
+    axiosInstance
+      .delete("/role/" + oldData)
+      .then((result) => console.log(result["data"]["data"]));
+  };
+
+  const onEditRow = (oldData: any) => {
+    axiosInstance
+      .get("/role/" + oldData)
+      .then((result) => console.log(result["data"]["data"]));
   };
 
   useEffect(() => {
@@ -61,6 +71,26 @@ const RoleList: React.FC = () => {
       .then((rowData) => setRowData(rowData));
   }, []);
 
+  const onBtnExport = () => {
+    const gridOptions = gridRef.current?.api;
+    gridOptions?.exportDataAsCsv();
+  };
+  const gridRef = React.useRef<AgGridReact>(null);
+
+  const onExportPdf = () => {
+    const doc = new jsPDF();
+    const gridData = gridRef.current?.api.getDisplayedRowAtIndex(0);
+    const columnHeaders = colDefs.map((col) => col.headerName);
+
+    doc.autoTable(
+      columnHeaders,
+      rowData.map((row) => Object.values(row)),
+      { startY: 20 }
+    );
+
+    doc.save("ag-grid-export.pdf");
+  };
+
   return (
     <>
       <div className="card">
@@ -68,11 +98,17 @@ const RoleList: React.FC = () => {
           <h2>Role List</h2>
         </div>
         <div className="body">
-          <div className="ag-theme-quartz" style={{ height: 500 }}>
+          <button onClick={onBtnExport}>Export to CSV</button>
+          <button onClick={onExportPdf}>Export to PDF</button>
+          <div className="ag-theme-quartz">
             <AgGridReact
+              ref={gridRef}
               rowData={rowData}
               columnDefs={colDefs}
               pagination={true}
+              paginationPageSize={5}
+              paginationPageSizeSelector={[5, 10, 20]}
+              domLayout="autoHeight"
             />
           </div>
         </div>

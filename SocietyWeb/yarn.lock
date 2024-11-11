@@ -788,7 +788,7 @@ ag-charts-types@10.3.1:
   resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-10.3.1.tgz#b60163a5da5f27222db71d4fcc20c0aed1854c9c"
   integrity sha512-oZvu9vJLk6lmzaYi0TmVVmHFZJpVNFziU0bnllx4wR3muXCmnxz5LouKIZ8CYnNiC7VO5HmHNlFu+0DmEO5zxg==
 
-ag-grid-community@32.3.2:
+ag-grid-community@32.3.2, ag-grid-community@^32.3.2:
   version "32.3.2"
   resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-32.3.2.tgz#0332b115cd703f09fc3f0f4aa2c04ec5e1de3f99"
   integrity sha512-ZrgS7+F0JKV6+sy7VQdt+9xhOJd6TAnXXEmw20ByG6AZdcIDEKBRHW7TfNwUqisXJjGKoaXnYByuMz7rL9PcPg==
@@ -1498,6 +1498,11 @@ json5@^2.2.3:
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
+jspdf-autotable@^3.8.4:
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/jspdf-autotable/-/jspdf-autotable-3.8.4.tgz#f7f05d45532ca94424a59cfa613309fff7c380a5"
+  integrity sha512-rSffGoBsJYX83iTRv8Ft7FhqfgEL2nLpGAIiqruEQQ3e4r0qdLFbPUB7N9HAle0I3XgpisvyW751VHCqKUVOgQ==
+
 jspdf@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/jspdf/-/jspdf-2.5.2.tgz#3c35bb1063ee3ad9428e6353852b0d685d1f923a"
@@ -1772,6 +1777,11 @@ react-bootstrap@^2.10.4:
     react-transition-group "^4.4.5"
     uncontrollable "^7.2.1"
     warning "^4.0.3"
+
+react-csv@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-2.2.2.tgz#5bbf0d72a846412221a14880f294da9d6def9bfb"
+  integrity sha512-RG5hOcZKZFigIGE8LxIEV/OgS1vigFQT4EkaHeKgyuCbUAu9Nbd/1RYq++bJcJJ9VOqO/n9TZRADsXNDR4VEpw==
 
 react-data-table-component-extensions@^1.6.0:
   version "1.6.0"

@@ -50,6 +50,7 @@ const Admincontent = () => {
                   <div className="tab-pane show active" id="Role-master">
                     <Role />
                     <RoleList />
+                    <List />
                   </div>
                   <div className="tab-pane" id="Profile-new">
                     <h6>Profile</h6>
