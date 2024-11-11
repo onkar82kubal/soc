@@ -12,6 +12,7 @@ class RoleRouters extends BaseRoutes {
       RoleController.updateRole
     );
     this.router.get("/", RoleController.getRole);
+    this.router.get("/:id", RoleController.findById);
   }
 }
 
