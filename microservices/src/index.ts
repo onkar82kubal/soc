@@ -1,6 +1,10 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
 import cors from "cors";
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDefinition from './swagger/swaggerDefinition';
+import * as dotenv from "dotenv";
 
 import NoteRouter from "./router/NoteRouter";
 import SocietyRouter from "./router/SocietyRouter";
@@ -16,6 +20,8 @@ import PermissionRouter from "./router/PermissionRouter";
 import UserRoleRouter from "./router/UserRoleRouter";
 import RolePermissionRouter from "./router/RolePermissionRouter";
 
+dotenv.config();
+
 class App {
   public app: Application;
   public corsOptions = {
@@ -24,8 +30,14 @@ class App {
   "preflightContinue": false,
   "optionsSuccessStatus": 204,
   "credentials": true,
-  "origin": ['http://localhost:5173']
+  "origin": [process.env.origin as string]
   }
+
+  // Swagger Setup
+ public specs = swaggerJsdoc({
+  swaggerDefinition,
+  apis: ['./src/router/*.ts'], // Path to the API docs
+});
   
   constructor() {
     this.app = express();
@@ -52,6 +64,7 @@ class App {
     this.app.route("/").get((req: Request, res: Response) => {
       res.send("welcome home");
     });
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(this.specs));
     this.app.use("/api/v1/note", NoteRouter);
     this.app.use("/api/v1/society", SocietyRouter);
     this.app.use("/api/v1/notification", NotificationRouter);
@@ -68,7 +81,7 @@ class App {
   }
 }
 
-const port: number = 8088;
+const port: number = Number(String(process.env.API_PORT));
 const app = new App().app;
 
 app.listen(port, () => {
