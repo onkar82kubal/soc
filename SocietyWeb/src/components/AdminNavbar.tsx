@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
-const Navbar = () => {
+const AdminNavbar = () => {
   return (
     <nav className="navbar navbar-fixed-top navbar-fixed-top-admin">
       <div className="container-fluid dashboard-container">
@@ -94,4 +94,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

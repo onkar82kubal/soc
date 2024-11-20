@@ -13,6 +13,8 @@ import PropertyDetailsRouter from "./router/PropertyDetailsRouter";
 import OwnerRouter from "./router/OwnerRouter";
 import OuthRouter from "./router/OuthRouter";
 import PermissionRouter from "./router/PermissionRouter";
+import UserRoleRouter from "./router/UserRoleRouter";
+import RolePermissionRouter from "./router/RolePermissionRouter";
 
 class App {
   public app: Application;
@@ -61,6 +63,8 @@ class App {
     this.app.use("/api/v1/owner", OwnerRouter);
     this.app.use("/api/v1/outh", OuthRouter);
     this.app.use("/api/v1/permission", PermissionRouter);
+    this.app.use("/api/v1/userrole", UserRoleRouter);
+    this.app.use("/api/v1/rolepermission", RolePermissionRouter);
   }
 }
 

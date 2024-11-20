@@ -1,21 +1,20 @@
-import React from 'react'
-import { Navbar } from 'react-bootstrap'
-import Leftside from '../../components/Leftside'
-import Rightside from '../../components/Rightside'
-import Societycontent from './Societycontent'
+import React from "react";
+import Navbar from "../../components/Navbar";
+import Leftside from "../../components/Leftside";
+import Rightside from "../../components/Rightside";
+import Societycontent from "./Societycontent";
 
 const SocietyManagement = () => {
   return (
     <div id="wrapper" className="theme-cyan">
-      <div className='dashBoard'>
+      <div className="dashBoard">
         <Navbar />
         <Leftside />
         <Rightside />
         <Societycontent />
       </div>
-        
     </div>
-  )
-}
+  );
+};
 
-export default SocietyManagement
+export default SocietyManagement;

@@ -19,6 +19,8 @@ import { P_PropertyDetails } from "../models/P_PropertyDetails";
 import { Owners } from "../models/Owners";
 import { P_Owners } from "../models/P_Owners";
 import { P_Permissions } from "../models/P_Permissions";
+import { P_UserRole } from "../models/P_UserRole";
+import { P_RolePermission } from "../models/P_RolePermission";
 
 dotenv.config();
 
@@ -54,7 +56,7 @@ class Database {
       host: this.POSTGRES_HOST,
       port: this.POSTGRES_PORT,
       dialect: "postgres",
-      models:[P_Societies,P_Notifications,P_Emails,P_Vendors,P_Parkings,P_Roles,P_PropertyDetails,P_Owners,P_Permissions]
+      models:[P_Societies,P_Notifications,P_Emails,P_Vendors,P_Parkings,P_Roles,P_PropertyDetails,P_Owners,P_Permissions,P_UserRole,P_RolePermission]
     });
 
     await this.post_sequelize
